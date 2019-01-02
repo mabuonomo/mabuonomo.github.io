@@ -4,6 +4,10 @@ layout: page
 ---
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
+<p>
+Hi. I’m Mario, a computer engineer from Milan, Italy. Please take a look around!
+</p>
+
 <p>My computer adventure begins in the 90s when I got a Commodore 64.
 Then gave me a 386, a 486, a Pentium 166. I liked disassemble and assemble my computers.
 The first programming language I learned was the Visual Basic 6, I bought a book at the bookstore. It was 2002.</p>
@@ -53,10 +57,25 @@ I have experience on cloud technologies: Amazon Web Services (S3, EC2, RDS, Clou
 	<li>TDD e Continuous Integration</li>
 </ul>
 
-<!-- <h2>Projects</h2>
+<h2>Projects</h2>
 
 <ul>
-	<li><a href="https://github.com/">Lorem Lorem</a></li>
-	<li><a href="https://github.com/">Ipsum Dolor</a></li>
-	<li><a href="https://github.com/">Dolor Lorem</a></li>
-</ul> -->
+	<li>
+		<div>A boilerplate of a nodejs server, written in Typescript, with JWT authentication, TypeGraphQL and TypeORM
+			<br>
+			<a href="https://github.com/mabuonomo/yggdrasil-ts" target="_blank">yggdrasil-ts</a>
+		</div>
+	</li>
+	<li>
+		<div>A boilerplate of a spring boot server, written in Java, with JWT authentication, GraphQL and Hibernate
+			<br>
+			<a href="https://github.com/mabuonomo/yggdrasil-springboot" target="_blank">yggdrasil-springboot</a>
+		</div>
+	</li>
+	<li>
+		<div>With #abbashare you can install ios ipa via browser Safari on iOS, without TestFlight or iTunes
+			<br>
+			<a href="https://github.com/mabuonomo/abbashare_web" target="_blank">abbashare</a>
+		</div>
+	</li>
+</ul>
