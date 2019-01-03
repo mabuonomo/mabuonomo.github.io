@@ -13,7 +13,6 @@ Hi, I’m Mario, a computer engineer from Milan, Italy. I like building awesome 
 <ul class="skill-list">
 	<li>PHP Zend3/Symfony 3.4+ (Design Patterns, Testes)</li>
 	<li>NodeJS Typescript/Javascript (Design Patterns, Testes)</li>
-	<li>Java (Design Patterns, Testes)</li>
 	<li>TDD e Continuous Integration</li>
 	<li>Docker and Kubernetes</li>
 </ul>
