@@ -1,6 +1,10 @@
-## Build
+## Build & Run
 
 ```bash
- bundle exec jekyll build
- bundle exec jekyll serve
-...
+docker-compose up
+```
+
+## Tips
+```bash
+rm Gemfile.lock
+```
