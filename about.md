@@ -21,6 +21,12 @@ Hi, I’m Mario, a computer engineer from Milan, Italy. I like building awesome 
 
 <ul>
 	<li>
+		<div>A middleware for using Wit.ai in a Botkit-powered bot (use Node-Wit 5.0.0)
+			<br>
+			<a href="https://github.com/mabuonomo/botkitwit-ts" target="_blank">botkitwit-ts</a>
+		</div>
+	</li>
+	<li>
 		<div>A boilerplate of a nodejs server, written in Typescript, with JWT authentication, TypeGraphQL and TypeORM
 			<br>
 			<a href="https://github.com/mabuonomo/yggdrasil-ts" target="_blank">yggdrasil-ts</a>

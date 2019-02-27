@@ -5,9 +5,11 @@ date: 2019-02-01 20:00
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
-- markdown
-- components
-- extra
+- botkit
+- nodejs
+- typescript
+- botkitwit
+- wit.ai
 category: blog
 author: mabuonomo
 description: Markdown summary with different options
@@ -16,11 +18,11 @@ description: Markdown summary with different options
 
 ## Summary:
 
-You can pick as item to see how to apply in markdown.
+In questo articolo mostrerò come potenziare l'ottimo framework BotKit aggiungendo l'intelligenza artificiale di Wit.ai. BotKit is the leading developer tool for building chat bots, apps and custom integrations for major messaging platforms. We love bots, and want to make them easy and fun to build!
+BotKit utilizza NodeJs. Per poter aggiungere Wit.ai utilizzeremo il middleware, da me sviluppato <a href="https://github.com/mabuonomo/botkitwit-ts">botkitwit-ts</a>
 
-#### Especial Elements
+<!-- #### Especial Elements
 - [Summary:](#summary)
-    - [Especial Elements](#especial-elements)
     - [External Elements](#external-elements)
 - [Evidence](#evidence)
 - [Side-by-side](#side-by-side)
@@ -36,7 +38,7 @@ You can pick as item to see how to apply in markdown.
 - [Gist](#gist)
 - [Codepen](#codepen)
 - [Slideshare](#slideshare)
-- [Videos](#videos)
+- [Videos](#videos) -->
 
 ---
 
