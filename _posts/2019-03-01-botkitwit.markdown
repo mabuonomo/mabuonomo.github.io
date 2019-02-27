@@ -1,7 +1,7 @@
 ---
-title: "Markdown Extra Components"
+title: "BotKit with Wit.ai"
 layout: post
-date: 2016-02-24 22:48
+date: 2019-02-01 20:00
 image: /assets/images/markdown.jpg
 headerImage: false
 tag:
@@ -9,7 +9,7 @@ tag:
 - components
 - extra
 category: blog
-author: jamesfoster
+author: mabuonomo
 description: Markdown summary with different options
 # jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
 ---
@@ -19,11 +19,18 @@ description: Markdown summary with different options
 You can pick as item to see how to apply in markdown.
 
 #### Especial Elements
+- [Summary:](#summary)
+    - [Especial Elements](#especial-elements)
+    - [External Elements](#external-elements)
 - [Evidence](#evidence)
-- [Side-by-Side](#side-by-side)
+- [Side-by-side](#side-by-side)
 - [Star](#star)
 - [Especial Breaker](#especial-breaker)
 - [Spoiler](#spoiler)
+- [Gist](#gist)
+- [Codepen](#codepen)
+- [Slideshare](#slideshare)
+- [Videos](#videos)
 
 #### External Elements
 - [Gist](#gist)
