@@ -20,6 +20,10 @@ description: Markdown summary with different options
 In questo articolo mostrerò come potenziare l'ottimo framework BotKit aggiungendo l'intelligenza artificiale di Wit.ai. BotKit is the leading developer tool for building chat bots, apps and custom integrations for major messaging platforms. We love bots, and want to make them easy and fun to build!
 BotKit utilizza NodeJs. Per poter aggiungere Wit.ai utilizzeremo il middleware, da me sviluppato <a href="https://github.com/mabuonomo/botkitwit-ts">botkitwit-ts</a>
 
+## My Goal
+
+Il mio obiettivo è TODO
+
 ## BotKit overview
 La pagina ufficiale del progetto botkit è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
 
@@ -41,8 +45,31 @@ Plus, Botkit works with all the NLP services (like Microsoft LUIS and IBM Watson
 
 Wit.ai permette easily create text or voice based bots that humans can chat with on their preferred messaging platform.
 
+Question? 
+Turn off the lights
+
+{% highlight json %}
+{  
+   "confidence":0.496,
+   "intent":"lights",
+   "_text":"Turn off the lights",
+   "entities":{  
+      "on_off":[  
+         {  
+            "value":"off"
+         }
+      ]
+   }
+}
+{% endhighlight %}
+
+Il valore entity indica l'azione calcolata, mentre value il valore ricevuto, nel caso precedente è stato riconosciuto un on_off con valore off, potremo per esempio interpretarlo come lo spegnimento di qualcosa.
+
+
+
 <!-- #### Especial Elements
 - [Summary:](#summary)
+- [My Goal](#my-goal)
 - [BotKit overview](#botkit-overview)
 - [Wit.ai overview](#witai-overview)
     - [External Elements](#external-elements)
