@@ -13,7 +13,6 @@ tag:
 category: blog
 author: mabuonomo
 description: Markdown summary with different options
-# jemoji: '<img class="emoji" title=":ramen:" alt=":ramen:" src="https://assets.github.com/images/icons/emoji/unicode/1f35c.png" height="20" width="20" align="absmiddle">'
 ---
 
 ## Summary:
@@ -22,6 +21,21 @@ In questo articolo mostrerò come potenziare l'ottimo framework BotKit aggiungen
 BotKit utilizza NodeJs. Per poter aggiungere Wit.ai utilizzeremo il middleware, da me sviluppato <a href="https://github.com/mabuonomo/botkitwit-ts">botkitwit-ts</a>
 
 ## BotKit overview
+La pagina ufficiale del progetto botkit è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
+
+Di seguito la descrizione su github:
+
+{% highlight html %}
+Botkit is the leading developer tool for building chat bots, apps and custom integrations for major messaging platforms.
+
+Botkit offers everything you need to design, build and operate an app:
+
+* Easy-to-extend starter kits
+* Fully-featured SDK with support for all major platforms
+* Tons of plugins and middlewares
+
+Plus, Botkit works with all the NLP services (like Microsoft LUIS and IBM Watson), can use any type of database you want, and runs on almost any hosting platform.
+{% endhighlight %}
 
 ## Wit.ai overview
 
