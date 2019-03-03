@@ -101,8 +101,7 @@ show-author: true
 # do you want some animations?
 animation: true
 
-languages: ['it', 'en']
-# gems: ['jekyll-multiple-languages']
+languages: ['en', 'it']
 language_default: 'en'
 
 plugins:
