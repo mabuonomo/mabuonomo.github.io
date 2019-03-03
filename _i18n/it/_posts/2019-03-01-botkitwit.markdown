@@ -4,6 +4,7 @@ layout: post
 date: 2019-02-01 20:00
 image: /assets/images/markdown.jpg
 headerImage: false
+lang: it
 tag:
 - botkit
 - nodejs
@@ -16,6 +17,8 @@ description: Markdown summary with different options
 ---
 
 ## Summary:
+
+IT
 
 In questo articolo mostrerò come potenziare l'ottimo framework BotKit aggiungendo l'intelligenza artificiale di Wit.ai. BotKit is the leading developer tool for building chat bots, apps and custom integrations for major messaging platforms. We love bots, and want to make them easy and fun to build!
 BotKit utilizza NodeJs. Per poter aggiungere Wit.ai utilizzeremo il middleware, da me sviluppato <a href="https://github.com/mabuonomo/botkitwit-ts">botkitwit-ts</a>
@@ -74,6 +77,7 @@ Il valore entity indica l'azione calcolata, mentre value il valore ricevuto, nel
 - [Wit.ai overview](#witai-overview)
     - [External Elements](#external-elements)
 - [First step](#first-step)
+- [Aggiungiamo Wit.ai tramite Botkitwit-ts: Botkitwit-ts in action](#aggiungiamo-witai-tramite-botkitwit-ts-botkitwit-ts-in-action)
 
 #### External Elements
 - [Gist](#gist)
@@ -118,6 +122,52 @@ You'll see...
 
 I AM ONLINE! COME TALK TO ME: <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
 Your bot is alive!!!!! If you did this on your local computer, you should be able to load it in your browser at http://localhost:3000 and get to chatting!
+
+## Aggiungiamo Wit.ai tramite Botkitwit-ts: Botkitwit-ts in action
+
+Esempio di codice:
+
+{% highlight typescript %}
+import { BotKitWit } from './src/botkitwit'
+import { WebConfiguration, WebController } from 'botkit';
+import { IConfig } from './src/types/IConfig';
+
+let config: IConfig = { token: 'PUT_HERE_WIT_ACCESS_TOKEN', minimum_confidence: 0.5 }
+let wit = new BotKitWit(config)
+
+var Botkit = require('botkit');
+var bot_options: WebConfiguration = {
+    replyWithTyping: true,
+};
+var controller: WebController = Botkit.socketbot(bot_options);
+
+var webserver = require(__dirname + '/components/express_webserver.js')(controller);
+require(__dirname + '/components/plugin_identity.js')(controller);
+
+// Open the web socket server
+controller.openSocketServer(controller.httpserver);
+controller.startTicking();
+
+controller.middleware.receive.use(wit.receive);
+
+controller.hears(
+    [
+        'greeting',
+        'booking_info',
+        'weather'
+    ],
+    'message_received',
+    wit.heard,
+    function (bot: any, message: any) {
+        console.log(message);
+        bot.reply(message, 'Hello!');
+        bot.reply(message, message.text);
+        bot.reply(message, message.response);
+    }
+);
+
+console.log('I AM ONLINE! COME TALK TO ME: http://localhost:' + (process.env.PORT || 3000))
+{% endhighlight %}
 
 
 [1]: http://daringfireball.net/projects/markdown/

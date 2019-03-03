@@ -101,12 +101,17 @@ show-author: true
 # do you want some animations?
 animation: true
 
+languages: ['it', 'en']
+# gems: ['jekyll-multiple-languages']
+language_default: 'en'
+
 plugins:
   - jekyll-seo-tag
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-admin
+  - jekyll-multiple-languages-plugin
 
 jekyll-mentions:
     base_url: https://github.com
