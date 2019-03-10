@@ -108,8 +108,6 @@ animation: true
 language_default: 'en'
 
 url: "https://mabuonomo.github.io" # the base hostname & protocol for your site
-plugins:
-  - jekyll-sitemap
 
 plugins:
   - jekyll-seo-tag
@@ -117,6 +115,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-admin
+  - jekyll-sitemap
   # - jekyll-multiple-languages-plugin
 
 jekyll-mentions:
