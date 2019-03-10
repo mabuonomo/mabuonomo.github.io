@@ -2,10 +2,10 @@
     <ul class="list">
         {% if site.lang == "it" %}
             {% capture link1 %}{{ site.baseurl_root }}/en{{ page.url}}{% endcapture %}
-            <a href="{{ link1 }}" >Inglese</a>
+            <a class="link" href="{{ link1 }}" >English version</a>
         {% elsif site.lang == "en" %}
             {% capture link2 %}{{ site.baseurl_root }}{{ page.url  }}{% endcapture %}
-            <a href="{{ link2 }}" >Italiano</a>
+            <a class="link" href="{{ link2 }}" >Versione italiana</a>
         {% endif %}
 
         {% if page.title != "Home" %}
