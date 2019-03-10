@@ -2,7 +2,7 @@
 title: "BotKit.ai + Wit.ai in action"
 layout: post
 date: 2019-03-01 20:00
-image: /assets/images/markdown.jpg
+image: /assets/images/bot/main.jpg
 headerImage: false
 comments: true
 lang: en
@@ -14,7 +14,7 @@ tag:
 - wit.ai
 category: blog
 author: mabuonomo
-description: Markdown summary with different options
+description: Building a Bot using botkit.ai and wit.ai on Node.js
 ---
 
 <img src="/assets/images/bot/main.jpg" />
