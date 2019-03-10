@@ -4,7 +4,7 @@ layout: post
 date: 2019-03-01 20:00
 image: /assets/images/markdown.jpg
 headerImage: false
-lang: it
+lang: en
 tag:
 - botkit.ai
 - nodejs
