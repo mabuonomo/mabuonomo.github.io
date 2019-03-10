@@ -6,10 +6,10 @@ image: /assets/images/markdown.jpg
 headerImage: false
 lang: it
 tag:
-- botkit
+- botkit.ai
 - nodejs
 - typescript
-- botkitwit
+- botkitwit-ts
 - wit.ai
 category: blog
 author: mabuonomo
