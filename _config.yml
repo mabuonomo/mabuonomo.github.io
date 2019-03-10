@@ -18,6 +18,7 @@ picture: assets/images/profile.jpg
 
 # url: https://koppl.in/indigo
 # your url: http://USERNAME.github.io
+timezone: 'Europe/Rome'
 
 permalink: /:title/
 
