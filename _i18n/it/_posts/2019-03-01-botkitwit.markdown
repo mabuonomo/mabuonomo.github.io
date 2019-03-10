@@ -1,7 +1,7 @@
 ---
 title: "BotKit.ai + Wit.ai in action"
 layout: post
-date: 2019-02-01 20:00
+date: 2019-03-01 20:00
 image: /assets/images/markdown.jpg
 headerImage: false
 lang: it
