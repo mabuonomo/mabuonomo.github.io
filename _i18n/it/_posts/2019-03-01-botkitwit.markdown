@@ -1,5 +1,5 @@
 ---
-title: "BotKit.ai with Wit.ai"
+title: "BotKit.ai + Wit.ai in action"
 layout: post
 date: 2019-02-01 20:00
 image: /assets/images/markdown.jpg
@@ -148,7 +148,7 @@ I AM ONLINE! COME TALK TO ME: <a href="http://localhost:3000" target="_blank">ht
 ## Botkitwit-ts in action
 
 In precedenza ho detto che dobbiamo aggiungere Wit.ai a Botkit.ai. Come si fa?
-Botkit.ai permette di utilizzare dei middleware, degli oggetti che intercetteranno le nostre domende, le invieranno prima a Wit.ai e restituiranno il json con la risposta elaborata a botkit.ai.
+Botkit.ai permette di utilizzare dei middleware, degli oggetti che intercetteranno le nostre domande, le invieranno prima a Wit.ai e restituiranno il json con la risposta elaborata a botkit.ai.
 
 In questo tutorial utilizzerò il middleware da me sviluppato, in typescript, <a href="https://github.com/mabuonomo/botkitwit-ts" target="_blank">botkitwit-ts</a>
 
@@ -202,10 +202,6 @@ controller.hears(
 console.log('I AM ONLINE! COME TALK TO ME: http://localhost:' + (process.env.PORT || 3000))
 {% endhighlight %}
 
+Possiamo testare il nostro bot navigando a <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
 
-[1]: http://daringfireball.net/projects/markdown/
-[2]: http://www.fileformat.info/info/unicode/char/2163/index.htm
-[3]: http://www.markitdown.net/
-[4]: http://daringfireball.net/projects/markdown/basics
-[5]: http://daringfireball.net/projects/markdown/syntax
-[6]: http://kune.fr/wp-content/uploads/2013/10/ghost-blog.jpg
+<img src="/assets/images/bot/botkit2.png"/>
