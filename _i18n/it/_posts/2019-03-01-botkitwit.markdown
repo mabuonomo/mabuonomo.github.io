@@ -20,7 +20,16 @@ description: Markdown summary with different options
 
 ---
 
-## Summary
+#### Summary
+- [Overview](#overview)
+- [BotKit.ai](#botkitai)
+- [Wit.ai](#witai)
+- [Primo passo, creiamo un progetto Botkit.ai](#primo-passo-creiamo-un-progetto-botkitai)
+- [Botkitwit-ts in action](#botkitwit-ts-in-action)
+
+---
+
+## Overview
 
 Un bot senza intelligenza artificiale può definirsi un bot? Ovviamente no.
 In questo tutorial cercherò di spiegare com'è possibile, in poche righe di codice aggiungere 
@@ -30,7 +39,7 @@ Cosa sono Botkit.ai e Wit.ai?
 
 ---
 
-## BotKit.ai overview
+## BotKit.ai
 
 Botkit.ai è descritto dai suoi autori in questo modo:
 
@@ -46,7 +55,7 @@ Semplificando, Botkit.ai è un framework che permette di creare dei bot, in node
 
 ---
 
-## Wit.ai overview
+## Wit.ai
 
 Wit.ai è un progetto made by Facebook, grazie ad esso il bot impara da solo, grazie al machine learning, come rispondere agli utenti, basandosi su esempi di conversazione che gli vengono sottoposti.
 
@@ -88,25 +97,9 @@ Analizziamo un json d'esempio di risposta ricevuta da Wit.ai
 
 Il valore entity indica l'azione calcolata, mentre value il valore ricevuto, nel caso precedente è stato riconosciuto un on_off con valore off, potremo per esempio interpretarlo come lo spegnimento di qualcosa.
 
-
-
-<!-- #### Especial Elements
-- [Summary](#summary)
-- [BotKit.ai overview](#botkitai-overview)
-- [Wit.ai overview](#witai-overview)
-    - [External Elements](#external-elements)
-- [First step, creiamo un progetto Botkit.ai](#first-step-creiamo-un-progetto-botkitai)
-- [Botkitwit-ts in action](#botkitwit-ts-in-action)
-
-#### External Elements
-- [Gist](#gist)
-- [Codepen](#codepen)
-- [Slideshare](#slideshare)
-- [Videos](#videos) -->
-
 ---
 
-## First step, creiamo un progetto Botkit.ai
+## Primo passo, creiamo un progetto Botkit.ai
 
 Entriamo nel vivo dell'azione
 
