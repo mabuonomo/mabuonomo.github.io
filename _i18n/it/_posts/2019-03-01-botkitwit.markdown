@@ -1,5 +1,5 @@
 ---
-title: "BotKit with Wit.ai"
+title: "BotKit.ai with Wit.ai"
 layout: post
 date: 2019-02-01 20:00
 image: /assets/images/markdown.jpg
@@ -15,6 +15,8 @@ category: blog
 author: mabuonomo
 description: Markdown summary with different options
 ---
+
+<img src="/assets/images/bot/main.jpg" />
 
 ## Summary:
 

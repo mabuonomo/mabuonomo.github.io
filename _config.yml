@@ -101,7 +101,7 @@ show-author: true
 # do you want some animations?
 animation: true
 
-languages: ['en', 'it']
+languages: ['it', 'en']
 language_default: 'en'
 
 plugins:
