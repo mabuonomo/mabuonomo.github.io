@@ -26,15 +26,13 @@ Un bot senza intelligenza artificiale può definirsi un bot? Ovviamente no.
 In questo tutorial cercherò di spiegare com'è possibile, in poche righe di codice aggiungere 
 Wit.ai al framework Botkit.ai.
 
-Ma cosa sono Botkit.ai e Wit.ai?
+Cosa sono Botkit.ai e Wit.ai?
 
 ---
 
 ## BotKit.ai overview
 
-Botkit utilizza NodeJs. Il sito ufficiale del progetto è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
-
-E' descritto dai suoi autori in questo modo:
+Botkit.ai è descritto dai suoi autori in questo modo:
 
 {% highlight html %}
 BotKit is the leading developer tool for building chat bots, apps and 
@@ -42,17 +40,19 @@ custom integrations for major messaging platforms.
 We love bots, and want to make them easy and fun to build!
 {% endhighlight %}
 
-In poche parole Botkit.ai è un framework che permette di creare dei bot, in nodejs, in maniera davvero semplice, e supporta praticamente qualsiasi piattaforma di chat esistente: Web and Apps,Slack,Cisco Webex,Cisco Jabber,Microsoft Teams,Facebook Messenger,Twilio SMS,Twilio IPM,Microsoft Bot Framework,Google Hangouts Chat.
+Il sito ufficiale del progetto è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
+
+Semplificando, Botkit.ai è un framework che permette di creare dei bot, in nodejs, in maniera davvero semplice, e supporta praticamente qualsiasi piattaforma di chat esistente: Web and Apps,Slack,Cisco Webex,Cisco Jabber,Microsoft Teams,Facebook Messenger,Twilio SMS,Twilio IPM,Microsoft Bot Framework,Google Hangouts Chat.
 
 ---
 
 ## Wit.ai overview
 
-Wit.ai è un progetto made by Facebook. Il suo scopo è quello di permettere di inserire l'intelligenza artificiale in maniera semplice e free nelle nostre applicazioni. 
+Wit.ai è un progetto made by Facebook, grazie ad esso il bot impara da solo, grazie al machine learning, come rispondere agli utenti, basandosi su esempi di conversazione che gli vengono sottoposti.
 
-Il sito ufficiale del progetto è <a href="https://wit.ai/ target="_blank">https://wit.ai/</a>
+Il sito ufficiale del progetto è <a href="https://wit.ai/" target="_blank">https://wit.ai/</a>
 
-E' descritto dai suoi autori in questo modo:
+Wit.ai è descritto dai suoi autori in questo modo:
 
 {% highlight html %}
 Wit.ai makes it easy for developers to build applications and devices 
@@ -69,17 +69,17 @@ La frase di un utente (in modalità text o voice) viene elaborata e strutturata.
 
 Analizziamo un json d'esempio di risposta ricevuta da Wit.ai
 
-User: Turn off the lights
+<strong>User says: "Turn off the lights"</strong>
 
 {% highlight json %}
 {  
    "confidence":0.496,
    "intent":"lights",
-   "_text":"Turn off the lights",
+   "_text":"Turn off the lights", 
    "entities":{  
-      "on_off":[  
+      "on_off":[  // <-- result entity/action
          {  
-            "value":"off"
+            "value":"off" // <-- result value 
          }
       ]
    }
@@ -148,9 +148,9 @@ I AM ONLINE! COME TALK TO ME: <a href="http://localhost:3000" target="_blank">ht
 ## Botkitwit-ts in action
 
 In precedenza ho detto che dobbiamo aggiungere Wit.ai a Botkit.ai. Come si fa?
-Botkit.ai permette di utilizzare dei middleware, degli oggetti che intercetteranno le nostre domande, le invieranno prima a Wit.ai e restituiranno il json con la risposta elaborata a botkit.ai.
+Botkit.ai permette di utilizzare dei middleware, degli oggetti che intercetteranno le nostre domande, le invieranno prima a Wit.ai e inoltreranno il json con la risposta elaborata a botkit.ai.
 
-In questo tutorial utilizzerò il middleware da me sviluppato, in typescript, <a href="https://github.com/mabuonomo/botkitwit-ts" target="_blank">botkitwit-ts</a>
+In questo tutorial utilizzerò il middleware da me sviluppato, in typescript, <a href="https://github.com/mabuonomo/botkitwit-ts" target="_blank">botkitwit-ts</a> (se lo trovi interessante votalo :))
 
 Prima di tutto dobbiamo aggiungere il middleware al progetto
 
@@ -202,6 +202,6 @@ controller.hears(
 console.log('I AM ONLINE! COME TALK TO ME: http://localhost:' + (process.env.PORT || 3000))
 {% endhighlight %}
 
-Possiamo testare il nostro bot navigando a <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
+E infine possiamo testare il nostro bot navigando a <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
 
 <img src="/assets/images/bot/botkit2.png"/>
