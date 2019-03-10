@@ -1,5 +1,13 @@
 <nav class="{% if page.title == "Home" %}nav-home{% else %}nav{% endif %}">
     <ul class="list">
+        {% if site.lang == "it" %}
+            {% capture link1 %}{{ site.baseurl_root }}/en{{ page.url}}{% endcapture %}
+            <a href="{{ link1 }}" >Inglese</a>
+        {% elsif site.lang == "en" %}
+            {% capture link2 %}{{ site.baseurl_root }}{{ page.url  }}{% endcapture %}
+            <a href="{{ link2 }}" >Italiano</a>
+        {% endif %}
+
         {% if page.title != "Home" %}
             <li class="item">
                 <a class="link" href="{{ site.url }}/">Home</a>
