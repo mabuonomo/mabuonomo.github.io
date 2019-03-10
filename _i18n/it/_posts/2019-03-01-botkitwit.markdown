@@ -18,19 +18,36 @@ description: Markdown summary with different options
 
 <img src="/assets/images/bot/main.jpg" />
 
-## Summary:
+## Summary
 
-IT
+Un bot senza intelligenza artificiale può definirsi un bot? Ovviamente no.
+In questo tutorial cercherò di spiegare com'è possibile, in poche righe di codice aggiungere 
+Wit.ai al framework Botkit.ai.
 
-In questo articolo mostrerò come potenziare l'ottimo framework BotKit aggiungendo l'intelligenza artificiale di Wit.ai. BotKit is the leading developer tool for building chat bots, apps and custom integrations for major messaging platforms. We love bots, and want to make them easy and fun to build!
-BotKit utilizza NodeJs. Per poter aggiungere Wit.ai utilizzeremo il middleware, da me sviluppato <a href="https://github.com/mabuonomo/botkitwit-ts">botkitwit-ts</a>
+Ma cosa sono Botkit.ai e Wit.ai?
 
-## My Goal
+## BotKit.ai overview
 
-Il mio obiettivo è TODO
+Botkit utilizza NodeJs. Il sito ufficiale del progetto è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
 
-## BotKit overview
-La pagina ufficiale del progetto botkit è <a href="https://botkit.ai/" target="_blank">https://botkit.ai/</a>
+E' descritto dai suoi autori in questo modo:
+
+{% highlight html %}
+BotKit is the leading developer tool for building chat bots, apps and 
+custom integrations for major messaging platforms. 
+We love bots, and want to make them easy and fun to build!
+{% endhighlight %}
+
+In poche parole Botkit.ai è un framework che permette di creare dei bot, in nodejs, in maniera davvero semplice, e supporta praticamente qualsiasi piattaforma di chat esistente: Web and Apps,Slack,Cisco Webex,Cisco Jabber,Microsoft Teams,Facebook Messenger,Twilio SMS,Twilio IPM,Microsoft Bot Framework,Google Hangouts Chat.
+
+## Wit.ai overview
+
+{% highlight html %}
+Wit.ai makes it easy for developers to build applications and devices 
+that you can talk or text to. Our vision is to empower developers with 
+an open and extensible natural language platform. We'll use this blog 
+to share news, feature announcements and stories from our community.
+{% endhighlight %}
 
 Di seguito la descrizione su github:
 
@@ -73,10 +90,10 @@ Il valore entity indica l'azione calcolata, mentre value il valore ricevuto, nel
 
 
 <!-- #### Especial Elements
-- [Summary:](#summary)
-- [My Goal](#my-goal)
-- [BotKit overview](#botkit-overview)
+- [Summary](#summary)
+- [BotKit.ai overview](#botkitai-overview)
 - [Wit.ai overview](#witai-overview)
+- [Wit.ai overview](#witai-overview-1)
     - [External Elements](#external-elements)
 - [First step](#first-step)
 - [Aggiungiamo Wit.ai tramite Botkitwit-ts: Botkitwit-ts in action](#aggiungiamo-witai-tramite-botkitwit-ts-botkitwit-ts-in-action)
