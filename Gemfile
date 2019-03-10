@@ -7,6 +7,6 @@ gem 'jekyll-admin'
 
 gem 'jekyll'
 
-group :jekyll_plugins do
- gem 'jekyll-multiple-languages-plugin'
-end
+# group :jekyll_plugins do
+#  gem 'jekyll-multiple-languages-plugin'
+# end

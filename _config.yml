@@ -104,7 +104,7 @@ show-author: true
 # do you want some animations?
 animation: true
 
-languages: ['en', 'it']
+# languages: ['en', 'it']
 language_default: 'en'
 
 plugins:
@@ -113,7 +113,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-admin
-  - jekyll-multiple-languages-plugin
+  # - jekyll-multiple-languages-plugin
 
 jekyll-mentions:
     base_url: https://github.com
