@@ -20,7 +20,7 @@ picture: assets/images/profile.jpg
 # your url: http://USERNAME.github.io
 timezone: 'Europe/Rome'
 
-permalink: /:title
+permalink: /blog/:title
 
 # To enable google analytics, supply your token below
 analytics-google: 'UA-131596731-1'
