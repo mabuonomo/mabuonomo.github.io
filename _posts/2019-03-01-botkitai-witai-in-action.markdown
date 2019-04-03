@@ -12,6 +12,7 @@ tag:
 - typescript
 - botkitwit-ts
 - wit.ai
+- tutorial
 category: blog
 author: mabuonomo
 description: Building a Bot using botkit.ai and wit.ai on Node.js

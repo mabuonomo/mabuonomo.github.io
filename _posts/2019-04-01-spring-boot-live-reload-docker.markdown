@@ -12,6 +12,7 @@ tag:
 - java
 - docker
 - gradle
+- tutorial
 category: blog
 author: mabuonomo
 description: "Spring Boot: live reload with Docker"
@@ -31,16 +32,13 @@ description: "Spring Boot: live reload with Docker"
 
 ## Overview
 
-When we develop web applications with Java, we have to restart the server to pick up all our changes. This kills productivity. Spring Boot Developers Tools provides solutions to automatically pick up changes without a complete server restart. Let's get productive with Spring Boot Developer Tools.
+When we develop web applications with Spring Boot, we have to restart the server to pick up all our changes. This kills productivity. Spring Boot Developers Tools provides solutions to automatically pick up changes without a complete server restart. 
 
 
 ## The Problem With Server Restarts
 
 When we develop our applications (web or RESTful API), we want to be able to test our changes quickly.
-
-Typically, in the Java world, we need to restart the server to pick up changes. Sure, there are plugins like JRebel that help, but you need shell out money for them.
-
-Restarting a server takes about 1-5 minutes based on the size of the application. A typical developer does 30-40 restarts in a day. I leave it as an exercise in basic math to determine how much time a developer can save if changes are automatically picked up as soon as they're made.
+Typically, in the Java world, we need to restart the server to pick up changes.
 
 That's where Spring Boot Developer Tools comes into the picture.
 
