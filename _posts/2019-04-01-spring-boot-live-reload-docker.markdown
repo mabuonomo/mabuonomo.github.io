@@ -1,7 +1,7 @@
 ---
 title: "Spring Boot: live reload with Docker"
 layout: post
-date: 2019-03-01 20:00
+date: 2019-04-01 20:00
 image: /assets/images/spring/logo.jpg
 headerImage: false
 comments: true
