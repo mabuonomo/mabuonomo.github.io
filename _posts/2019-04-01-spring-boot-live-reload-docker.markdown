@@ -64,7 +64,7 @@ services:
       - 8080:8080
 {% endhighlight %}
 
-And create a file in the root of the project, called 'run.sh':
+And create another file in the root of the project, called 'run.sh':
 
 {% highlight bash %}
 #!/bin/bash
