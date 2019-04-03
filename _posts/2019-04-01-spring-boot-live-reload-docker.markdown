@@ -49,7 +49,7 @@ compile 'org.springframework.boot:spring-boot-devtools'
 {% endhighlight %}
 
 ## Dockerizer
-And create a file in the root of the project, called 'docker-compose.yml':
+Create a file in the root of the project, called 'docker-compose.yml':
 
 {% highlight yaml %}
 version: '3.3'
