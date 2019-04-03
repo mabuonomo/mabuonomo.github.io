@@ -1,23 +1,22 @@
 ---
-title: "Kafka: stream processing in Typescript"
+title: "Spring Boot: live reload with Docker"
 layout: post
 date: 2019-03-01 20:00
-image: /assets/images/bot/main.jpg
+image: /assets/images/spring/logo.jpg
 headerImage: false
 comments: true
 lang: en
 tag:
-- kafka
-- apache
-- typescript
-- stream processing
-- queue
+- spring boot
+- live reload
+- java
+- docker
 category: blog
 author: mabuonomo
-description: An example of Kafka stream processing in Typescript
+description: "Spring Boot: live reload with Docker"
 ---
 
-<img src="/assets/images/kafka/logo.png" />
+<img src="/assets/images/spring/logo.png" />
 
 ---
 
@@ -31,4 +30,5 @@ description: An example of Kafka stream processing in Typescript
 ---
 
 ## Overview
+
 
