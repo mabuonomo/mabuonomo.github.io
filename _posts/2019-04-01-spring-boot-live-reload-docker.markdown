@@ -7,8 +7,8 @@ headerImage: false
 comments: true
 lang: en
 tag:
-- spring boot
-- live reload
+- spring_boot
+- live_reload
 - java
 - docker
 - gradle
