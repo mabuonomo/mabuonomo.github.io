@@ -32,7 +32,7 @@ description: "Docker-compose: wait for container X before starting Y"
 
 If you have ever used Docker Compose to run multi-container applications, there is a good chance that you have run into the following situation. Service A depends on service B, but service B takes a a while to start up and be ready. Because of this, you must add some extra "wait for service B" logic into service A's startup procedure.
 
-A simple example of this is a set of end-to-end tests for a web application. When the test suite begins to run, it is reasonable for it to assume that the web application that it is testing is up and running. Here is a docker-compose.yml file that models this.
+For example consider this docker-compose file:
 
 {% highlight yaml %}
 version: '3.3'
@@ -64,8 +64,7 @@ In our case here, Docker Compose only guarantees that the web service had its "p
 
 ## Problem
 
-Problem?
-Yes. We have a race condition. Because both services start at the same time, it is possible that the spring-boot attempt to initiate a connection to the web service before the docker-mysql service is ready to accept connections.
+Because both services start at the same time, it is possible that the spring-boot attempt to initiate a connection to the web service before the docker-mysql service is ready to accept connections.
 
 ## Solution
 
