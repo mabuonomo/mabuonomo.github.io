@@ -24,13 +24,15 @@ description: "NestJS + gRPC: a multi microservices example"
 
 #### Summary
 - [Overview](#overview)
-- [What Is gRPC?](#what-is-grpc)
+- [What is NestJS?](#what-is-nestjs)
+- [What are microservices?](#what-are-microservices)
+- [What is remote procedure call (RPC)?](#what-is-remote-procedure-call-rpc)
+- [And now, what is gRPC?](#and-now-what-is-grpc)
 - [Features](#features)
   - [Procedure call makes it simple](#procedure-call-makes-it-simple)
   - [Efficient network transmission with HTTP/2](#efficient-network-transmission-with-http2)
   - [Built-in streaming data exchange support](#built-in-streaming-data-exchange-support)
   - [Seamless integration with Protocol Buffer](#seamless-integration-with-protocol-buffer)
-- [What is Remote Procedure Call(RPC) ?](#what-is-remote-procedure-callrpc)
 - [What is Protocol Buffer?](#what-is-protocol-buffer)
 - [How gRPC Works?](#how-grpc-works)
 - [References](#references)
@@ -45,9 +47,32 @@ Comparing to traditional REST API, the client communicates with the server by sp
 With gRPC, client can directly call a function in the server, as you will see later, they actually share the same protobuf file. And huge advantages from the image above is that server and client written in different languages can communicate with each other easily all based on that they share one protobuf file.
 If you are a bit confused so far about gRPC and protobuf, let’s continue and implement a service and see how protobuf plays the role in the communication. In this post, we are going to implement a simple unary service, that is sending a request and receiving a response, of greeting. The client would send a request of its name and the server will return a string of Hello + client_name .
 
-We will build an application that demonstrates how to perform CRUD operations Redis through a web interface. The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-grpc" target="_blank">GitHub</a>.
+We will build an application that demonstrates how to use gRPC with NestJS, using multiple microservices. The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-grpc" target="_blank">GitHub</a>.
 
-## What Is gRPC?
+## What is NestJS?
+Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications. It uses progressive JavaScript, is built with and fully supports TypeScript (yet still enables developers to code in pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).
+
+## What are microservices?
+The central idea behind microservices is that some types of applications become easier to build and maintain when they are broken down into smaller, composable pieces which work together. Each component is continuously developed and separately maintained, and the application is then simply the sum of its constituent components. This is in contrast to a traditional, "monolithic" application which is all developed all in one piece.
+
+Applications built as a set of modular components are easier to understand, easier to test, and most importantly easier to maintain over the life of the application. It enables organizations to achieve much higher agility and be able to vastly improve the time it takes to get working improvements to production. This approach has proven to be superior, especially for large enterprise applications which are developed by teams of geographically and culturally diverse developers.
+
+There are other benefits:
+
+* Developer independence: Small teams work in parallel and can iterate faster than large teams.
+* Isolation and resilience: If a component dies, you spin up another while and the rest of the application continues to function.
+* Scalability: Smaller components take up fewer resources and can be scaled to meet increasing demand of that component only.
+* Lifecycle automation: Individual components are easier to fit into continuous delivery pipelines and complex deployment scenarios not possible with monoliths.
+* Relationship to the business: Microservice architectures are split along business domain boundaries, increasing independence and understanding across the organization.
+
+The common definition of microservices generally relies upon each microservice providing an API endpoint, often but not always a stateless REST API which can be accessed over HTTP(S) just like a standard web page. This method for accessing microservices make them easy for developers to consume as they only require tools and methods many developers are already familiar with.
+
+## What is remote procedure call (RPC)?
+Firstly,Remote Procedure Call is a protocol where one program can use to request a service which is located in another program on different network without having to understand the network details.
+
+It differs from normal procedure call. it makes use of kernel to make a request call to another service in the different network.
+
+## And now, what is gRPC?
 gRPC (gRPC Remote Procedure Calls) is an open source remote procedure call (RPC) system initially developed at Google. It uses HTTP/2 for transport, Protocol Buffers as the interface description language, and provides features such as authentication, bidirectional streaming and flow control, blocking or nonblocking bindings, and cancellation and timeouts. 
 
 ## Features
@@ -58,12 +83,7 @@ Transmitting data from mobile devices to a backend server can be a very resource
 ### Built-in streaming data exchange support
 gRPC was designed with HTTP/2’s support for full-duplex bidirectional streaming in mind from the outset. Streaming allows a request and response to have an arbitrarily large size, such as operations that require uploading or downloading a large amount of information. With streaming, client and server can read and write messages simultaneously and subscribe to each other without tracking resource IDs. This makes your app implementation more flexible.
 ### Seamless integration with Protocol Buffer
-gRPC uses Protocol Buffers (Protobuf) as its serialization/deserialization method with optimized-for-Android codegen plugin (Protobuf Java Lite). Compared to text-based format (such as JSON), Protobuf offers more efficient data exchanging in terms of marshaling speed and code size, which makes it more suitable to be used in mobile environments. Also Protobuf’s concise message/service definition syntax makes it much easier to define data model and application protocols for your app.
-
-## What is Remote Procedure Call(RPC) ?
-Firstly,Remote Procedure Call is a protocol where one program can use to request a service which is located in another program on different network without having to understand the network details.
-
-it differs from normal procedure call. it makes use of kernel to make a request call to another service in the different network.
+gRPC uses Protocol Buffers (Protobuf) as its serialization/deserialization Compared to text-based format (such as JSON), Protobuf offers more efficient data exchanging in terms of marshaling speed and code size, which makes it more suitable to be used in mobile environments. Also Protobuf’s concise message/service definition syntax makes it much easier to define data model and application protocols for your app.
 
 ## What is Protocol Buffer?
 protocol buffers are language neutral way of serializing structure data. In simple terms, it converts the data into binary formats and transfer the data over the network. it is lightweight when compare to XML,JSON
@@ -106,3 +126,5 @@ Bi-Directional Streaming RPC’s : it is a process of sending the stream of data
 * https://docs.nestjs.com/microservices/grpc
 * https://developers.google.com/protocol-buffers/docs/proto
 * https://github.com/mabuonomo/example-nestjs-grpc
+* https://microservices.io/
+* https://opensource.com/resources/what-are-microservices
