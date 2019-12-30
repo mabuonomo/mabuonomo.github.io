@@ -118,6 +118,108 @@ As you can see, each field in the message definition has a unique number. These 
 
 ## Well, and now?
 
+main.ts:
+```typescript
+async function bootstrap() {
+  const app = await NestFactory.createMicroservice(AppModule, {
+    transport: Transport.GRPC,
+    options: {
+      // url: 'http://localhost:6379',
+      url: '0.0.0.0:50051',
+      protoPath: '/proto/micr1.proto',
+      package: 'micr1',
+    },
+  });
+
+  // tslint:disable-next-line: no-console
+  app.listen(() => console.log('Microservice is listening'));
+}
+bootstrap();
+```
+
+microservices controller:
+```typescript
+@Controller()
+export class Micr1Service {
+  @GrpcMethod()
+  findOne(data: Micr1ById, metadata: any): Micr1 {
+    const items = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Doe' },
+    ];
+    return items.find(({ id }) => id === data.id);
+  }
+}
+```
+
+```typescript
+export const grpcClientOptions1: ClientOptions = {
+  transport: Transport.GRPC,
+  options: {
+    url: 'node_1:50051',
+    package: 'micr1',
+    protoPath: '/proto/micr1.proto',
+  },
+};
+```
+
+client controller:
+```typescript
+  @Client(grpcClientOptions1)
+  private readonly client1: ClientGrpc;
+
+  private micr1Service: Micr1Service;
+
+  onModuleInit() {
+    this.micr1Service = this.client1.getService<Micr1Service>('Micr1Service');
+  }
+
+  @Get('client1')
+  find1(): Observable<any> {
+    return this.micr1Service.findOne({ id: 1 });
+  }
+```
+
+docker-compose.yml:
+```yaml
+version: "3.7"
+
+services:
+  node_1:
+    build:
+      context: .docker
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./microservices/micr1:/app
+      - ./proto:/proto
+    command: nest start
+    working_dir: /app
+
+  node_2:
+    build:
+      context: .docker
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./microservices/micr2:/app
+      - ./proto:/proto
+    command: nest start
+    working_dir: /app
+    
+  node_client:
+    build:
+      context: .docker
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./client:/app
+      - ./proto:/proto
+    command: nest start
+    working_dir: /app
+    ports: 
+      - 3000:3000
+    depends_on: 
+      - node_1
+      - node_2
+```
 
 ## References
 * https://developer.android.com/guide/topics/connectivity/grpc
