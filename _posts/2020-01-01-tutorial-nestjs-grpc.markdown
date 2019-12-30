@@ -13,6 +13,7 @@ tag:
 - grpc
 - nestjs
 - node
+- typescript
 category: blog
 author: mabuonomo
 description: "NestJS + gRPC: a multi microservices example"
