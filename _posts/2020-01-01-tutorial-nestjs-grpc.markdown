@@ -29,10 +29,6 @@ description: "NestJS + gRPC: a multi microservices example"
   - [Microservices](#microservices)
   - [Remote Procedure Call (RPC)](#remote-procedure-call-rpc)
   - [gRPC](#grpc)
-    - [Procedure call makes it simple](#procedure-call-makes-it-simple)
-    - [Efficient network transmission with HTTP/2](#efficient-network-transmission-with-http2)
-    - [Built-in streaming data exchange support](#built-in-streaming-data-exchange-support)
-    - [Seamless integration with Protocol Buffer](#seamless-integration-with-protocol-buffer)
   - [Protocol Buffer](#protocol-buffer)
 - [Well, and now?](#well-and-now)
 - [References](#references)
@@ -40,7 +36,7 @@ description: "NestJS + gRPC: a multi microservices example"
 ---
 
 ## Overview
-For a long period of time, REST API has dominated the web programming world until gRPC came and disrupt the industry. There are numerous posts online discussing the advantages of gRPC and comparing it with REST, so I am not going to make redundant comments on this point. My understanding is that gRPC inherits the functionality of REST and extended it with faster, lighter and more flexible service. In this post, let’s take a glance of gRPC and implement a simple service using Golang.
+For a long period of time, REST API has dominated the web programming world until gRPC came and disrupt the industry. There are numerous posts online discussing the advantages of gRPC and comparing it with REST, so I am not going to make redundant comments on this point. My understanding is that gRPC inherits the functionality of REST and extended it with faster, lighter and more flexible service. In this post, let’s take a glance of gRPC and implement a simple service using NestJS.
 
 Comparing to traditional REST API, the client communicates with the server by specify a bunch of constraints, like sending to a specific url and specify what kind of operations like PUT, POST, GET. I think gRPC in a way abstracts the idea and defines the communication by simply calling functions in which messages are defined in protobuf format.
 
@@ -60,37 +56,45 @@ Applications built as a set of modular components are easier to understand, easi
 
 There are other benefits:
 
-* Developer independence: Small teams work in parallel and can iterate faster than large teams.
-* Isolation and resilience: If a component dies, you spin up another while and the rest of the application continues to function.
-* Scalability: Smaller components take up fewer resources and can be scaled to meet increasing demand of that component only.
-* Lifecycle automation: Individual components are easier to fit into continuous delivery pipelines and complex deployment scenarios not possible with monoliths.
-* Relationship to the business: Microservice architectures are split along business domain boundaries, increasing independence and understanding across the organization.
+* **Developer independence**
+  Small teams work in parallel and can iterate faster than large teams.
+* **Isolation and resilience** 
+  If a component dies, you spin up another while and the rest of the application continues to function.
+* **Scalability**
+  Smaller components take up fewer resources and can be scaled to meet increasing demand of that component only.
+* **Lifecycle automation**
+  Individual components are easier to fit into continuous delivery pipelines and complex deployment scenarios not possible with monoliths.
+* **Relationship to the business**
+  Microservice architectures are split along business domain boundaries, increasing independence and understanding across the organization.
 
 The common definition of microservices generally relies upon each microservice providing an API endpoint, often but not always a stateless REST API which can be accessed over HTTP(S) just like a standard web page. This method for accessing microservices make them easy for developers to consume as they only require tools and methods many developers are already familiar with.
 
-### Remote Procedure Call (RPC)
-Firstly,Remote Procedure Call is a protocol where one program can use to request a service which is located in another program on different network without having to understand the network details.
+In this article we'll use gRPC indeed REST technology.
 
-it differs from normal procedure call. it makes use of kernel to make a request call to another service in the different network.
+### Remote Procedure Call (RPC)
+Firstly, Remote Procedure Call is a protocol where one program can use to request a service which is located in another program on different network without having to understand the network details.
+
+It differs from normal procedure call. It makes use of kernel to make a request call to another service in the different network.
 
 ### gRPC
 gRPC (gRPC Remote Procedure Calls) is an open source remote procedure call (RPC) system initially developed at Google. It uses HTTP/2 for transport, Protocol Buffers as the interface description language, and provides features such as authentication, bidirectional streaming and flow control, blocking or nonblocking bindings, and cancellation and timeouts. 
 
-#### Procedure call makes it simple
+* **Procedure call makes it simple**
 Because it’s RPC, the programming model is procedure calls: the networking aspect of the technology is abstracted away from application code, making it look almost as if it was a normal in-process function call. Your client-server interaction will not be constrained by the semantics of HTTP resource methods (such as GET, PUT, POST, and DELETE). Compared to REST APIs, your implementation looks more natural, without the need for handling HTTP protocol metadata.
 
-#### Efficient network transmission with HTTP/2
+* **Efficient network transmission with HTTP/2**
 Transmitting data from mobile devices to a backend server can be a very resource-intensive process. Using the standard HTTP/1.1 protocol, frequent connections from a mobile device to a cloud service can drain the battery, increase latency, and block other apps from connecting. By default, gRPC runs on top of HTTP/2, which introduces bi-directional streaming, flow control, header compression, and the ability to multiplex requests over a single TCP/IP connection. The result is that gRPC can reduce resource usage, resulting in lower response times between your app and services running in the cloud, reduced network usage, and longer battery life for client running on mobile devices.
 
-#### Built-in streaming data exchange support
+* **Built-in streaming data exchange support**
 gRPC was designed with HTTP/2’s support for full-duplex bidirectional streaming in mind from the outset. Streaming allows a request and response to have an arbitrarily large size, such as operations that require uploading or downloading a large amount of information. With streaming, client and server can read and write messages simultaneously and subscribe to each other without tracking resource IDs. This makes your app implementation more flexible.
 
-#### Seamless integration with Protocol Buffer
+* **Seamless integration with Protocol Buffer**
 gRPC uses Protocol Buffers (Protobuf) as its serialization/deserialization method with optimized-for-Android codegen plugin (Protobuf Java Lite). Compared to text-based format (such as JSON), Protobuf offers more efficient data exchanging in terms of marshaling speed and code size, which makes it more suitable to be used in mobile environments. Also Protobuf’s concise message/service definition syntax makes it much easier to define data model and application protocols for your app.
 
 ### Protocol Buffer
-protocol buffers are language neutral way of serializing structure data. In simple terms, it converts the data into binary formats and transfer the data over the network. it is lightweight when compare to XML,JSON
+Protocol buffers are language neutral way of serializing structure data. In simple terms, it converts the data into binary formats and transfer the data over the network. It is lightweight when compare to XML,JSON
 
+Below an .proto file example:
 ```proto
 syntax = "proto3";
 
