@@ -25,7 +25,7 @@ description: "NestJS + gRPC: a multi microservices example"
 
 #### Summary
 - [Overview](#overview)
-- [What is..](#what-is)
+- [A brief overview of..](#a-brief-overview-of)
   - [NestJS](#nestjs)
   - [Microservices](#microservices)
   - [Remote Procedure Call (RPC)](#remote-procedure-call-rpc)
@@ -44,9 +44,9 @@ Comparing to traditional REST API, the client communicates with the server by sp
 With gRPC, client can directly call a function in the server, as you will see later, they actually share the same protobuf file. And huge advantages from the image above is that server and client written in different languages can communicate with each other easily all based on that they share one protobuf file.
 If you are a bit confused so far about gRPC and protobuf, let’s continue and implement a service and see how protobuf plays the role in the communication. In this post, we are going to implement two services, that is sending a request and receiving a response, of an object.
 
-The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-microservices-grpc" target="_blank">GitHub</a>.
+The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-microservices-grpc" target="_blank">GitHub</a>
 
-## What is..
+## A brief overview of..
 ### NestJS
 Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications. It uses progressive JavaScript, is built with and fully supports TypeScript (yet still enables developers to code in pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).
 
@@ -240,7 +240,7 @@ services:
       - node_1
       - node_2
 ```
-Full code at  https://github.com/mabuonomo/example-nestjs-microservices-grpc
+The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-microservices-grpc" target="_blank">GitHub</a>
 
 ## References
 * https://developer.android.com/guide/topics/connectivity/grpc
