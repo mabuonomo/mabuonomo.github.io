@@ -124,7 +124,6 @@ Our goal is to create an architecture consisting of a client (nestjs) that commu
 For the creation of a microservice in NestJS we follow the official documentation (https://docs.nestjs.com/microservices/basics)
 
 **Microservices project:**
-Init the microservices in main.ts
 ```typescript
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
