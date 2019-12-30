@@ -27,7 +27,7 @@ description: "NestJS + gRPC: a multi microservices example"
 - [What is..](#what-is)
   - [NestJS](#nestjs)
   - [Microservices](#microservices)
-  - [Remote Procedure Call(RPC)](#remote-procedure-callrpc)
+  - [Remote Procedure Call (RPC)](#remote-procedure-call-rpc)
   - [gRPC](#grpc)
     - [Procedure call makes it simple](#procedure-call-makes-it-simple)
     - [Efficient network transmission with HTTP/2](#efficient-network-transmission-with-http2)
@@ -68,7 +68,7 @@ There are other benefits:
 
 The common definition of microservices generally relies upon each microservice providing an API endpoint, often but not always a stateless REST API which can be accessed over HTTP(S) just like a standard web page. This method for accessing microservices make them easy for developers to consume as they only require tools and methods many developers are already familiar with.
 
-### Remote Procedure Call(RPC)
+### Remote Procedure Call (RPC)
 Firstly,Remote Procedure Call is a protocol where one program can use to request a service which is located in another program on different network without having to understand the network details.
 
 it differs from normal procedure call. it makes use of kernel to make a request call to another service in the different network.
