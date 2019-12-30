@@ -243,11 +243,11 @@ services:
 The full source code for this project is available on <a href="https://github.com/mabuonomo/example-nestjs-microservices-grpc" target="_blank">GitHub</a>
 
 ## References
-* https://developer.android.com/guide/topics/connectivity/grpc
-* https://cloudnweb.dev/2019/05/what-is-grpc-how-to-implement-grpc-in-node-js
-* https://grpc.io
-* https://docs.nestjs.zcom/microservices/grpc
-* https://developers.google.com/protocol-buffers/docs/proto
-* https://github.com/mabuonomo/example-nestjs-microservices-grpc
-* https://docs.nestjs.com/
+* <a href="https://developer.android.com/guide/topics/connectivity/grpc" target="_blank">https://developer.android.com/guide/topics/connectivity/grpc</a>
+* <a href="https://cloudnweb.dev/2019/05/what-is-grpc-how-to-implement-grpc-in-node-js" target="_blank">https://cloudnweb.dev/2019/05/what-is-grpc-how-to-implement-grpc-in-node-js</a>
+* <a href="https://grpc.io" target="_blank">https://grpc.io</a>
+* <a href="https://docs.nestjs.zcom/microservices/grpc" target="_blank">https://docs.nestjs.zcom/microservices/grpc</a>
+* <a href="https://developers.google.com/protocol-buffers/docs/proto" target="_blank">https://developers.google.com/protocol-buffers/docs/proto</a>
+* <a href="https://github.com/mabuonomo/example-nestjs-microservices-grpc" target="_blank">https://github.com/mabuonomo/example-nestjs-microservices-grpc</a>
+* <a href="https://docs.nestjs.com/" target="_blank">https://docs.nestjs.com/</a>
 
