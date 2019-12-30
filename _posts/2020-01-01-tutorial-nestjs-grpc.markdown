@@ -121,9 +121,10 @@ Our goal is to create an architecture consisting of a client (nestjs) that commu
 
 <img src="/assets/images/grpc/architecture.png" />
 
-Per la creazione di un microservizio in NestJS seguiamo la documentazione ufficiale (https://docs.nestjs.com/microservices/basics)
+For the creation of a microservice in NestJS we follow the official documentation (https://docs.nestjs.com/microservices/basics)
 
-**main.ts:**
+**Microservices project:**
+Init the microservices in main.ts
 ```typescript
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
@@ -141,7 +142,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-**microservices controller:**
+Implement the services specified into a .proto file
 ```typescript
 @Controller()
 export class Micr1Service {
@@ -156,7 +157,7 @@ export class Micr1Service {
 }
 ```
 
-**client controller:**
+**Client project:**
 ```typescript
 export const grpcClientOptions1: ClientOptions = {
   transport: Transport.GRPC,
@@ -167,6 +168,7 @@ export const grpcClientOptions1: ClientOptions = {
   },
 };
 ```
+Call the microservices via gRPC
 
 ```typescript
   @Client(grpcClientOptions1)
@@ -183,6 +185,7 @@ export const grpcClientOptions1: ClientOptions = {
     return this.micr1Service.findOne({ id: 1 });
   }
 ```
+We can run this architecture using docker-compose:
 
 **dockerfile.dev:**
 ```dockerfile
@@ -247,3 +250,4 @@ Full code at  https://github.com/mabuonomo/example-nestjs-microservices-grpc
 * https://developers.google.com/protocol-buffers/docs/proto
 * https://github.com/mabuonomo/example-nestjs-microservices-grpc
 * https://docs.nestjs.com/
+
