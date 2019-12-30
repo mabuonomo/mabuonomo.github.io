@@ -117,14 +117,18 @@ message Micr1 {
 As you can see, each field in the message definition has a unique number. These field numbers are used to identify your fields in the message binary format, and should not be changed once your message type is in use. Note that field numbers in the range 1 through 15 take one byte to encode, including the field number and the field's type (you can find out more about this in Protocol Buffer Encoding). Field numbers in the range 16 through 2047 take two bytes. So you should reserve the numbers 1 through 15 for very frequently occurring message elements. Remember to leave some room for frequently occurring elements that might be added in the future.
 
 ## Well, and now?
+Our goal is to create an architecture consisting of a client (nestjs) that communicates with two microservices (always nestjs) via gRPC.
 
-main.ts:
+<img src="/assets/images/grpc/architecture.png" />
+
+Per la creazione di un microservizio in NestJS seguiamo la documentazione ufficiale (https://docs.nestjs.com/microservices/basics)
+
+**main.ts:**
 ```typescript
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.GRPC,
     options: {
-      // url: 'http://localhost:6379',
       url: '0.0.0.0:50051',
       protoPath: '/proto/micr1.proto',
       package: 'micr1',
@@ -137,7 +141,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-microservices controller:
+**microservices controller:**
 ```typescript
 @Controller()
 export class Micr1Service {
@@ -152,6 +156,7 @@ export class Micr1Service {
 }
 ```
 
+**client controller:**
 ```typescript
 export const grpcClientOptions1: ClientOptions = {
   transport: Transport.GRPC,
@@ -163,7 +168,6 @@ export const grpcClientOptions1: ClientOptions = {
 };
 ```
 
-client controller:
 ```typescript
   @Client(grpcClientOptions1)
   private readonly client1: ClientGrpc;
@@ -180,7 +184,20 @@ client controller:
   }
 ```
 
-docker-compose.yml:
+**dockerfile.dev:**
+```dockerfile
+FROM node:11-alpine
+EXPOSE 3000 50051 
+
+RUN npm install -g typescript
+RUN npm install -g ts-node
+RUN npm install -g ts-node-dev
+
+# nest
+RUN npm install -g @nestjs/cli
+```
+
+**docker-compose.yml:**
 ```yaml
 version: "3.7"
 
@@ -220,6 +237,7 @@ services:
       - node_1
       - node_2
 ```
+Full code at  https://github.com/mabuonomo/example-nestjs-microservices-grpc
 
 ## References
 * https://developer.android.com/guide/topics/connectivity/grpc
