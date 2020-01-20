@@ -28,6 +28,19 @@ layout: compress
     {{ scss_sheet | scssify }}
     </style>
 
+    <script src="/assets/node_modules/botkit-socket-client/dist/prod/botkit.js"></script>
+    <script>
+        const config = {
+            ws_url: "ws://localhost:3000",
+            reconnect_timeout: 3000,
+            max_reconnect: 5,
+            enable_history: false
+        };
+
+        let client = new Botkit.BotKitClient(config);
+        // client.send("Demo sender")
+    </script>
+
 </head>
 <body>
 
