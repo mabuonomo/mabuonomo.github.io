@@ -1,6 +1,6 @@
 # main text of home
 name: Mario Buonomo
-bio: Computer engineer. Taurus. Neapolitan.
+bio: Computer engineer. Taurus. Neapolitan. Bot lover <3.
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -80,7 +80,8 @@ width: large
 # paginate_path: "blog/:num/"
 
 # if you don't need projects, comment the *projects* configs below
-# projects: true
+projects: true
+botchat: true
 
 # if you don't need "about" or "blog", comment them out below
 about: true
