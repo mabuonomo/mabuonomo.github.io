@@ -22,226 +22,104 @@ description: "NestJS + gRPC: a multi microservices example"
 
 <!-- <img src="/assets/images/grpc/node_grpc.png" /> -->
 
+<!-- ![Profile Image]({{ site.url }}/{{ site.picture }}) -->
+
 ---
 
-<html>
-<head>
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.css">
-</head>
-<body>
-	<div class="main-section">
-		<div class="head-section">
-			<div class="headLeft-section">
-				<div class="headLeft-sub">
-					<input type="text" name="search" placeholder="Search...">
-					<button> <i class="fa fa-search"></i> </button>
-				</div>
-			</div>
-			<div class="headRight-section">
-				<div class="headRight-sub">
-					<h3>Lajy Ion</h3>
-					<small>Lorem ipsum dolor sit amet...</small>
-				</div>
-			</div>
-		</div>
-		<div class="body-section">
-			<div class="left-section mCustomScrollbar" data-mcs-theme="minimal-dark">
-				<ul>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<i class="fa fa-circle"></i>
-								<img src="/demo/man01.png">
-							</div>
-							<div class="desc">
-								<small class="time">05:30 am</small>
-								<h5>Luis Yankee</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<i class="fa fa-circle"></i>
-								<img src="/demo/man02.png">
-							</div>
-							<div class="desc">
-								<small class="time">3 day</small>
-								<h5>Joi Chak</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li class="active">
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man03.png">
-							</div>
-							<div class="desc">
-								<small class="time">4 day</small>
-								<h5>Lajy Ion</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man04.png">
-							</div>
-							<div class="desc">
-								<small class="time">18 day</small>
-								<h5>Lod Kine</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<i class="fa fa-circle"></i>
-								<img src="/demo/man01.png">
-							</div>
-							<div class="desc">
-								<small class="time">11:50 am</small>
-								<h5>Nik Minaj</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man02.png">
-							</div>
-							<div class="desc">
-								<small class="time">20 day</small>
-								<h5>Win Sina</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man03.png">
-							</div>
-							<div class="desc">
-								<small class="time">18 day</small>
-								<h5>Jack Clerk</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man02.png">
-							</div>
-							<div class="desc">
-								<small class="time">20 day</small>
-								<h5>Win Sina</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="chatList">
-							<div class="img">
-								<img src="/demo/man03.png">
-							</div>
-							<div class="desc">
-								<small class="time">18 day</small>
-								<h5>Jack Clerk</h5>
-								<small>Lorem ipsum dolor sit amet...</small>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="right-section">
-				<div class="message mCustomScrollbar" data-mcs-theme="minimal-dark">
-					<ul>
-						<li class="msg-left">
-							<div class="msg-left-sub">
-								<img src="/demo/man03.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua.
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-						<li class="msg-right">
-							<div class="msg-left-sub">
-								<img src="/demo/man04.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua.
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-						<li class="msg-day"><small>Wednesday</small></li>
-						<li class="msg-left">
-							<div class="msg-left-sub">
-								<img src="/demo/man03.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-						<li class="msg-right">
-							<div class="msg-left-sub">
-								<img src="/demo/man04.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua.
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-						<li class="msg-left">
-							<div class="msg-left-sub">
-								<img src="/demo/man03.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-						<li class="msg-right">
-							<div class="msg-left-sub">
-								<img src="/demo/man04.png">
-								<div class="msg-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua.
-								</div>
-								<small>05:25 am</small>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="right-section-bottom">
-					<form>
-						<div class="upload-btn">
-						  	<button class="btn"><i class="fa fa-photo"></i></button>
-						  	<input type="file" name="myfile" />
-						</div>
-						<input type="text" name="" placeholder="type here...">
-						<button class="btn-send"><i class="fa fa-send"></i></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!-- custom scrollbar plugin -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-</body>
-</html>
+<div class="container py-5 px-4">
+  <!-- For demo purpose-->
+  <!-- <header class="text-center">
+    <h1 class="display-4 text-white">Bootstrap Chat</h1>
+    <p class="text-white lead mb-0">An elegant chat widget compatible with Bootstrap 4</p>
+    <p class="text-white lead mb-4">Snippet by
+      <a href="https://bootstrapious.com" class="text-white">
+        <u>Bootstrapious</u></a>
+    </p>
+  </header> -->
+
+  <div class="row rounded-lg overflow-hidden shadow">
+    <!-- Chat Box-->
+    <div class="col-12 px-0">
+      <div class="px-4 py-5 chat-box bg-white">
+        <!-- Sender Message-->
+        <div class="media w-50 mb-3"><img
+            src="/{{ site.picture }}" alt="user" width="50"
+            class="rounded-circle">
+          <div class="media-body ml-3">
+            <div class="bg-success rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Test which is a new approach all solutions</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+        <!-- Reciever Message-->
+        <div class="media w-50 ml-auto mb-3">
+          <div class="media-body">
+            <div class="bg-primary rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+        <!-- Sender Message-->
+        <div class="media w-50 mb-3"><img
+            src="/{{ site.picture }}" alt="user" width="50"
+            class="rounded-circle">
+          <div class="media-body ml-3">
+            <div class="bg-success rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Test, which is a new approach to have</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+        <!-- Reciever Message-->
+        <div class="media w-50 ml-auto mb-3">
+          <div class="media-body">
+            <div class="bg-primary rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+        <!-- Sender Message-->
+        <div class="media w-50 mb-3"><img
+            src="/{{ site.picture }}" alt="user" width="50"
+            class="rounded-circle">
+          <div class="media-body ml-3">
+            <div class="bg-success rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Test, which is a new approach</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+        <!-- Reciever Message-->
+        <div class="media w-50 ml-auto mb-3">
+          <div class="media-body">
+            <div class="bg-primary rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Typing area -->
+      <form action="#" class="bg-light">
+        <div class="input-group">
+          <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+            class="form-control rounded-0 border-0 py-4 bg-light">
+          <div class="input-group-append">
+            <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
