@@ -40,7 +40,7 @@ description: "NestJS + gRPC: a multi microservices example"
   <div class="row rounded-lg overflow-hidden shadow">
     <!-- Chat Box-->
     <div class="col-12 px-0">
-      <div class="px-4 py-5 chat-box bg-white">
+      <div id="boxchat" class="px-4 py-5 chat-box bg-white">
         
         <!-- Sender Message-->
         <div class="media w-50 mb-3"><img

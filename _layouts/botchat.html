@@ -74,6 +74,19 @@ layout: default
   let clientBot = new Botkit.BotKitClient(config);
   clientBot.getSocket().addEventListener("error", (event) => {
     console.error('ERROR_inside', event);
+
+    document.getElementById("boxchat").insertAdjacentHTML(
+      'beforeend',
+      `<div class="media w-50 ml-auto mb-3">
+          <div class="media-body">
+            <div class="bg-primary rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>
+      </div>`
+    );
   });
     // client.send("Demo sender")
 </script>
