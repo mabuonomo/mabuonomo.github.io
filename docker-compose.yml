@@ -1,9 +1,10 @@
-version: '3'
+version: '3.7'
 services:
   site:
-    command: jekyll serve
-    image: jekyll/jekyll:latest
+    build:
+      context: .docker
+      dockerfile: Dockerfile
     volumes:
-      - .:/srv/jekyll
+      - .:/home/app/
     ports:
       - 4000:4000
