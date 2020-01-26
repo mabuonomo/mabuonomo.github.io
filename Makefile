@@ -8,3 +8,6 @@ stop:
 
 down:
 	docker-compose down
+
+prod:
+	docker-compose run node ng build --prod --base-href 'https://mabuonomo.github.io/'
