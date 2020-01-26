@@ -84,7 +84,16 @@ layout: default
   }
 
   function createReceiverMsg(message) {
-
+    return `<div class="media w-50 mb-3"><img
+            src="/{{ site.picture }}" alt="user" width="50"
+            class="rounded-circle">
+          <div class="media-body ml-3">
+            <div class="bg-success rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">${message}</p>
+            </div>
+            <p class="small text-white">12:00 PM | Aug 13</p>
+          </div>
+        </div>`;
   }
 
   let clientBot = new Botkit.BotKitClient(config);
@@ -93,7 +102,12 @@ layout: default
 
     document.getElementById("boxchat").insertAdjacentHTML(
       'beforeend',
-      createSenderMsg("error")
+      createSenderMsg("sender")
+    );
+
+    document.getElementById("boxchat").insertAdjacentHTML(
+      'beforeend',
+      createReceiverMsg("receiver")
     );
   });
   // client.send("Demo sender")
