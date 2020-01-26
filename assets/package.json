@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "botkit-socket-client": "0.0.2"
+    "botkit-socket-client": "0.0.4"
   }
 }

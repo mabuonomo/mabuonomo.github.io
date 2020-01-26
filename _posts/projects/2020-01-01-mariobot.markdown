@@ -41,6 +41,7 @@ description: "NestJS + gRPC: a multi microservices example"
     <!-- Chat Box-->
     <div class="col-12 px-0">
       <div class="px-4 py-5 chat-box bg-white">
+        
         <!-- Sender Message-->
         <div class="media w-50 mb-3"><img
             src="/{{ site.picture }}" alt="user" width="50"
@@ -62,51 +63,6 @@ description: "NestJS + gRPC: a multi microservices example"
             <p class="small text-white">12:00 PM | Aug 13</p>
           </div>
         </div>
-
-        <!-- Sender Message-->
-        <div class="media w-50 mb-3"><img
-            src="/{{ site.picture }}" alt="user" width="50"
-            class="rounded-circle">
-          <div class="media-body ml-3">
-            <div class="bg-success rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">Test, which is a new approach to have</p>
-            </div>
-            <p class="small text-white">12:00 PM | Aug 13</p>
-          </div>
-        </div>
-
-        <!-- Reciever Message-->
-        <div class="media w-50 ml-auto mb-3">
-          <div class="media-body">
-            <div class="bg-primary rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-            </div>
-            <p class="small text-white">12:00 PM | Aug 13</p>
-          </div>
-        </div>
-
-        <!-- Sender Message-->
-        <div class="media w-50 mb-3"><img
-            src="/{{ site.picture }}" alt="user" width="50"
-            class="rounded-circle">
-          <div class="media-body ml-3">
-            <div class="bg-success rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">Test, which is a new approach</p>
-            </div>
-            <p class="small text-white">12:00 PM | Aug 13</p>
-          </div>
-        </div>
-
-        <!-- Reciever Message-->
-        <div class="media w-50 ml-auto mb-3">
-          <div class="media-body">
-            <div class="bg-primary rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-            </div>
-            <p class="small text-white">12:00 PM | Aug 13</p>
-          </div>
-        </div>
-
       </div>
 
       <!-- Typing area -->

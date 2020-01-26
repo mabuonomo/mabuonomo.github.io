@@ -18,6 +18,10 @@ export class BotKitClient {
     return this.config.userGuid;
   }
 
+  getSocket() {
+    return this.socket;
+  }
+
   /**
    * Send e text message
    * @param text

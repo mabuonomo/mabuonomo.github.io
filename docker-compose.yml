@@ -1,7 +1,7 @@
 version: '3'
 services:
   site:
-    command: jekyll serve
+    command: jekyll serve --incremental
     image: jekyll/jekyll:latest
     volumes:
       - .:/srv/jekyll

@@ -21,6 +21,14 @@ let client = new Botkit.BotKitClient(config);
 client.send("Demo sender")
 ```
 
+add an event listener:
+```ts
+client.getSocket().addEventListener(ListenerEvent.OPEN, (event) => {
+    console.log('event received!');
+    // ...
+});
+```
+
 ## Are you a dev? You are welcome!
 
 Initialize the project
