@@ -8,6 +8,21 @@ layout: page
 Hi, I’m Mario, a computer engineer from Milan, Italy. I like building awesome software. Specializing in designing and developing  exceptional, high-quality websites and applications. Currently working at <a href="https://facile.it" target="_blank">Facile.it</a></p>
 <p>Please take a look around!</p>
 
+<table border="0" cellpadding="1" cellspacing="0" align="center">
+    <tbody>
+        <tr>
+            <td align="center"><h2>Support Me</h2></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <a href="https://www.paypal.com/paypalme/sharksoft" target="_blank">
+                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logo_paypal_pagamento.jpg"
+                        border="0" alt="Marchi di accettazione PayPal">
+                </a></td>
+        </tr>
+    </tbody>
+</table>
+
 <h2>Skills</h2>
 
 <ul class="skill-list">
