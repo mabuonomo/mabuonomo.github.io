@@ -79,7 +79,15 @@ sudo systemctl start usbipd.service
 
 ## Client
 
+Before start check how many bluetooth devices are active on the client. It is possibile executing _hciconfig_
+
 <img src="/assets/images/usb2ip/client_hciconfig.png" />
+
+How you can see at this moment we have only a device, called _hci0_, this is the integrate bluetooth.
+
+Check now our usb devices (executing _lsub_):
+
+<img src="/assets/images/usb2ip/client_ls.png" />
 
 ```sh
 sudo su
@@ -88,8 +96,6 @@ modprobe vhci-hcd
 echo 'vhci-hcd' >> /etc/modules
 nano /lib/systemd/system/usbip.service
 ```
-
-<img src="/assets/images/usb2ip/client_ls.png" />
 
 ```txt
 [Unit]
