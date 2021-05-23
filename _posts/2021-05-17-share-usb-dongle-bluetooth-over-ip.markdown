@@ -20,13 +20,13 @@ author: mabuonomo
 description: "Share a usb dongle bluetooth (ble) over IP using usb2ip"
 ---
 
-<img src="/assets/images/docker/raspi.png" />
+<img src="/assets/images/usb2ip/header.jpg" />
 
 ---
 
 ## Overview
 
-Today I have got a _crazy_ idea. 
+Today I have got a _crazy_ idea.
 
 For a IoT project I need to control a remote usb dongle bluetooth (BLE) from a raspberry pi 4+. Why? I want to run a single program from a server that drives many devices remotely. It's possible? Yes with linux you can!
 
@@ -44,13 +44,27 @@ What do you need?
 
 ## Server (Raspberry PI 3+)
 
-SSH to raspbian and execute the following commands:
+Before of all we have to check the initial state of the devices that are installated on the our raspberry pi.
+
+However connect via SSH to raspbian and execute the following commands:
 
 ```sh
 lsusb && hciconfig
 ```
 
 <img src="/assets/images/usb2ip/lsusb.server.png" />
+
+How you can see _lsusb_ show a BLE tongle identified by _0a12:0001_ (thid value is very important, copy it!)
+
+```
+Bus 001 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
+```
+
+_hciconfig_ instead show the bluetooth device address of the our BLE device, it result up and running.
+
+### Configure the usb2ip server
+
+The following steps will configure the _usb2ip_ server.
 
 ```sh
 sudo su
@@ -75,6 +89,8 @@ ExecStop=/bin/sh -c "/usr/sbin/usbip unbind --$(/usr/sbin/usbip list -p -l | gre
 WantedBy=multi-user.target
 ```
 
+NB. You have to substitute the _subid_ 0a12:0001 with the your usbid ble device.
+
 ```sh
 sudo systemctl --system daemon-reload
 sudo systemctl enable usbipd.service
@@ -92,6 +108,8 @@ How you can see at this moment we have only a device, called _hci0_, this is the
 Check now our usb devices (executing _lsub_):
 
 <img src="/assets/images/usb2ip/client_ls.png" />
+
+## Configure the client
 
 ```sh
 sudo su
@@ -116,15 +134,25 @@ ExecStop=/bin/sh -c "/usr/lib/linux-tools/$(uname -r)/usbip detach --port=$(/usr
 WantedBy=multi-user.target
 ```
 
+NB. You have to substitute 192.168.1.148 and 0a12:0001 with the values of the raspberry'ip and subid of the usbble tongle.
+
 ```sh
 sudo systemctl --system daemon-reload
 sudo systemctl enable usbip.service
 sudo systemctl start usbip.service
 ```
 
+Thats' all!
+
+To check the installation is correct you can execute _hciconfig_ con your client. You would to see a new device with the bluetooth address of the ble dongle installated on the raspberry pi.
+
 <img src="/assets/images/usb2ip/usb2ip.client.hci.png" />
 
 ## FAQ
+
+### usbip: error: open vhci_driver
+
+If usbip service won't start on the client:
 
 ```sh
 sudo systemctl start usbip.service
@@ -134,6 +162,8 @@ sudo systemctl status usbip.service
 -> usbip: error: open vhci_driver
 ```
 
+Rerun modprobe command
+
 ```sh
 sudo su
 modprobe vhci-hcd
@@ -141,4 +171,7 @@ sudo systemctl start usbip.service
 ```
 
 ## What's next?
-ser2net
+
+If I want to share the principal bluetooth device and not a external dongle? We can try with net2ser, but this need a new article!
+
+Stay tuned!
