@@ -44,9 +44,9 @@ What do you need?
 
 ## Server (Raspberry PI 3+)
 
-Before of all we have to check the initial state of the devices that are installated on the our raspberry pi.
+First of all we have to check the initial state of the devices that are installated on the our raspberry pi.
 
-However connect via SSH to raspbian and execute the following commands:
+Then connect via SSH to raspbian and run the following commands:
 
 ```sh
 lsusb && hciconfig
@@ -54,13 +54,13 @@ lsusb && hciconfig
 
 <img src="/assets/images/usb2ip/lsusb.server.png" />
 
-How you can see _lsusb_ show a BLE tongle identified by _0a12:0001_ (thid value is very important, copy it!)
+As you can see _lsusb_ show a BLE tongle identified by _0a12:0001_ (this value is very important, it called _usbid_, save it!)
 
 ```
 Bus 001 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
 ```
 
-_hciconfig_ instead show the bluetooth device address of the our BLE device, it result up and running.
+_hciconfig_ instead shows the bluetooth device address of our BLE device, it is active and running.
 
 ### Configure the usb2ip server
 
@@ -89,7 +89,7 @@ ExecStop=/bin/sh -c "/usr/sbin/usbip unbind --$(/usr/sbin/usbip list -p -l | gre
 WantedBy=multi-user.target
 ```
 
-NB. You have to substitute the _subid_ 0a12:0001 with the your usbid ble device.
+NB. You need to replace _usbid_ 0a12:0001 with the your usbid ble device.
 
 ```sh
 sudo systemctl --system daemon-reload
@@ -99,13 +99,13 @@ sudo systemctl start usbipd.service
 
 ## Client (Ubuntu 20.04+)
 
-Before start check how many bluetooth devices are active on the client. It is possibile executing _hciconfig_
+Before start check how many bluetooth devices are active on the client. It is possibile running _hciconfig_
 
 <img src="/assets/images/usb2ip/client_hciconfig.png" />
 
-How you can see at this moment we have only a device, called _hci0_, this is the integrate bluetooth.
+As you can see at this moment we have only a device, called _hci0_, this is the built-in bluetooth.
 
-Check now our usb devices (executing _lsub_):
+Check now our usb devices (by running _lsub_):
 
 <img src="/assets/images/usb2ip/client_ls.png" />
 
@@ -134,7 +134,7 @@ ExecStop=/bin/sh -c "/usr/lib/linux-tools/$(uname -r)/usbip detach --port=$(/usr
 WantedBy=multi-user.target
 ```
 
-NB. You have to substitute 192.168.1.148 and 0a12:0001 with the values of the raspberry'ip and subid of the usbble tongle.
+NB. You have to replace 192.168.1.148 and 0a12:0001 with the values of the raspberry'ip and subid of the usb ble tongle.
 
 ```sh
 sudo systemctl --system daemon-reload
@@ -144,7 +144,7 @@ sudo systemctl start usbip.service
 
 Thats' all!
 
-To check the installation is correct you can execute _hciconfig_ con your client. You would to see a new device with the bluetooth address of the ble dongle installated on the raspberry pi.
+To verify that the installation is correct you can run _hciconfig_ on your client. You should see a new device with the bluetooth address of the ble dongle installed on the raspberry pi.
 
 <img src="/assets/images/usb2ip/usb2ip.client.hci.png" />
 
@@ -152,7 +152,7 @@ To check the installation is correct you can execute _hciconfig_ con your client
 
 ### usbip: error: open vhci_driver
 
-If usbip service won't start on the client:
+If usbip service fails to start on the client:
 
 ```sh
 sudo systemctl start usbip.service
