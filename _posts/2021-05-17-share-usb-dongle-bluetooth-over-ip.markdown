@@ -172,6 +172,6 @@ sudo systemctl start usbip.service
 
 ## What's next?
 
-If I want to share the principal bluetooth device and not a external dongle? We can try with net2ser, but this need a new article!
+What if I want to share the main bluetooth device (/dev/serial1 -> /dev/ttyAMA0) and not an external dongle? We can try with net2ser, but this needs a new article!
 
 Stay tuned!
