@@ -54,7 +54,7 @@ lsusb && hciconfig
 
 <img src="/assets/images/usb2ip/lsusb.server.png" />
 
-As you can see _lsusb_ show a BLE tongle identified by _0a12:0001_ (this value is very important, it called _usbid_, save it!)
+As you can see _lsusb_ show a BLE tongle identified by _0a12:0001_ (this value is very important, it's called _usbid_, save it!)
 
 ```
 Bus 001 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
@@ -89,7 +89,7 @@ ExecStop=/bin/sh -c "/usr/sbin/usbip unbind --$(/usr/sbin/usbip list -p -l | gre
 WantedBy=multi-user.target
 ```
 
-NB. You need to replace _usbid_ 0a12:0001 with the your usbid ble device.
+NB. You need to replace _usbid_ 0a12:0001 with your usbid ble device.
 
 ```sh
 sudo systemctl --system daemon-reload
@@ -152,7 +152,7 @@ To verify that the installation is correct you can run _hciconfig_ on your clien
 
 ### usbip: error: open vhci_driver
 
-If usbip service fails to start on the client:
+If usbip service failed to start on the client:
 
 ```sh
 sudo systemctl start usbip.service
