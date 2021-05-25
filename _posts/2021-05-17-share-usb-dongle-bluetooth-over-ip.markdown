@@ -28,7 +28,7 @@ description: "Share a usb dongle bluetooth (ble) over IP using usb2ip"
 
 Today I have got a _crazy_ idea.
 
-For a IoT project I need to control a remote usb dongle bluetooth (BLE) from a raspberry pi 4+. Why? I want to run a single program from a server that drives many devices remotely. It's possible? Yes with linux you can!
+For a IoT project I need to control a remote usb dongle bluetooth (BLE) from a raspberry pi 4+. Why? I want to run a single program from a server that drives many devices remotely. Is it possible? Yes with linux you can!
 
 The solution is called <a href="http://usbip.sourceforge.net/" target="_blank">usb2ip</a>
 
