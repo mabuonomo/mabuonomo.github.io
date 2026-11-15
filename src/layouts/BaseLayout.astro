@@ -155,6 +155,27 @@ main > .section.statement > .wrap {
   height: auto;
 }
 
+/* Live green blinking dot on hero kicker */
+.hero__kicker .dot {
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__kicker .dot {
+    animation: kicker-pulse 2s ease-in-out infinite;
+  }
+}
+@keyframes kicker-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+}
+
 /* Blog rows */
 .articles-list {
   display: flex;
