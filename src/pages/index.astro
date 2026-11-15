@@ -37,14 +37,14 @@ const projects = [
 
 const stackDiagram = JSON.stringify({
   layout: 'hub',
-  alt: 'Staff Engineering Core connects Go, TypeScript, Docker, Kubernetes, GitHub CI, and AI Workflows.',
+  alt: 'Staff Engineering Core connects TypeScript, Node.js, Kubernetes, GitOps CI, BLE & ESP32 IoT, and AI Workflows.',
   center: { label: 'Staff Eng.', icon: 'ui:code' },
   spokes: [
-    { label: 'Go & MCP', icon: 'graphql' },
+    { label: 'Node & GraphQL', icon: 'graphql' },
     { label: 'TypeScript', icon: 'ts' },
-    { label: 'Docker', icon: 'docker' },
     { label: 'Kubernetes', icon: 'kubernetes' },
     { label: 'GitOps & CI', icon: 'github' },
+    { label: 'BLE & ESP32', icon: 'docker' },
     { label: 'AI & Python', icon: 'js' },
   ],
 });
@@ -52,7 +52,7 @@ const stackDiagram = JSON.stringify({
 
 <BaseLayout
   title="Mario Buonomo: Staff Engineer in Milan"
-  description="Staff Engineer at Facile.it, based in Milan. Architecting backend systems in Go and TypeScript, Kubernetes & GitOps infrastructure, and applied AI/LLM workflows."
+  description="Staff Engineer at Facile.it, based in Milan. Architecting backend systems in TypeScript, Node.js, and PHP, Kubernetes & GitOps infrastructure, BLE/ESP32 IoT telemetry, and applied AI workflows."
   currentPath="/"
 >
   <section class="hero hero--split" data-enter aria-labelledby="hero-h">
@@ -60,8 +60,8 @@ const stackDiagram = JSON.stringify({
       <div class="hero-text grid hero__grid">
         <div class="hero__text span-5">
           <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Milan, Italy · Staff Engineer @ Facile.it</p>
-          <h1 id="hero-h">Staff engineer architecting backend &amp; AI systems</h1>
-          <p class="hero__lead">Computer engineer from Naples, based in Milan. Staff Engineer at Facile.it, working across distributed backends in Go and TypeScript, Kubernetes infrastructure, and applied AI workflows.</p>
+          <h1 id="hero-h">Staff engineer architecting backend, IoT &amp; AI systems</h1>
+          <p class="hero__lead">Computer engineer from Naples, based in Milan. Staff Engineer at Facile.it, working across distributed backends in TypeScript, Node.js, and PHP, Kubernetes infrastructure, BLE/ESP32 telemetry, and applied AI.</p>
           <div class="btn-row">
             <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com">Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
             <a class="btn btn--secondary" href="/blog/">Read articles</a>
@@ -79,7 +79,7 @@ const stackDiagram = JSON.stringify({
           >
           <div class="ly-float">
             <div class="ly-float__row"><span class="ly-live">Staff Engineer</span><span>{posts.length} articles</span></div>
-            <div class="ly-float__title">Go · TypeScript · Kubernetes · AI</div>
+            <div class="ly-float__title">TypeScript · K8s · BLE/ESP32 · AI</div>
           </div>
         </div>
       </div>
@@ -90,24 +90,28 @@ const stackDiagram = JSON.stringify({
     <div class="wrap grid">
       <div class="span-6">
         <div class="section-head">
-          <h2 id="expertise-h">Core engineering stack. <span class="muted">Backend services, Kubernetes infra, and applied AI.</span></h2>
+          <h2 id="expertise-h">Core engineering stack. <span class="muted">Backend services, Kubernetes infra, IoT telemetry, and applied AI.</span></h2>
         </div>
         <ul class="rows">
           <li>
-            <span class="rows__name">Go &amp; TypeScript Services<small>Distributed backends, MCP servers, NestJS, gRPC &amp; GraphQL APIs</small></span>
+            <span class="rows__name">TypeScript, Node.js &amp; PHP<small>Distributed backends, NestJS, Symfony, gRPC &amp; GraphQL APIs</small></span>
             <span class="rows__value">Backend</span>
           </li>
           <li>
-            <span class="rows__name">Kubernetes, K3s &amp; GitOps<small>Docker, Traefik, reproducible containers, CI/CD pipelines</small></span>
+            <span class="rows__name">Kubernetes, K3s &amp; GitOps<small>Docker, Traefik, RabbitMQ, InfluxDB, Grafana &amp; CI/CD pipelines</small></span>
             <span class="rows__value">Infra</span>
           </li>
           <li>
-            <span class="rows__name">Applied AI &amp; LLM Agents<small>LangChain, LangGraph, Ollama, MLflow, tool-calling workflows</small></span>
+            <span class="rows__name">BLE 5.0 &amp; ESP32 IoT<small>Extended Advertising, GATT OTA updates, ESP-NOW &amp; MQTTS telemetry</small></span>
+            <span class="rows__value">Embedded</span>
+          </li>
+          <li>
+            <span class="rows__name">Applied AI &amp; LLM Agents<small>LangChain, LangGraph, Ollama, MLflow &amp; tool-calling workflows</small></span>
             <span class="rows__value">AI / LLM</span>
           </li>
           <li>
-            <span class="rows__name">Python, Automation &amp; Mobile<small>Async bots, media pipelines, Android &amp; NFC integrations</small></span>
-            <span class="rows__value">Systems</span>
+            <span class="rows__name">Python &amp; Android (Kotlin)<small>Async bots, media pipelines, Jetpack Compose &amp; BLE/NFC apps</small></span>
+            <span class="rows__value">Apps</span>
           </li>
         </ul>
       </div>
