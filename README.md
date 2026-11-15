@@ -10,7 +10,7 @@ Personal website and technical blog of **Mario Buonomo**, built as a static site
 - **Runtime:** Node.js 24
 - **Containerized Dev:** Docker Compose (`node:24-alpine`)
 - **Content:** Markdown blog posts via Astro Content Collections (`src/content/blog`) with Shiki (`github-dark`) syntax highlighting
-- **CI/CD:** GitHub Actions (`withastro/action@v6` + `actions/deploy-pages@v4`)
+- **CI/CD:** GitHub Actions (`withastro/action@v6` + `actions/deploy-pages@v5`)
 
 ---
 
@@ -119,6 +119,6 @@ Supported frontmatter fields (defined in `src/content.config.ts`):
 
 Every push to `master` (or manual `workflow_dispatch`) triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
-1. Checks out the repository (`actions/checkout@v4`).
+1. Checks out the repository (`actions/checkout@v6`).
 2. Installs dependencies and builds the static Astro site with Node 24 (`withastro/action@v6`).
-3. Deploys the generated static bundle to GitHub Pages (`actions/deploy-pages@v4`).
+3. Deploys the generated static bundle to GitHub Pages (`actions/deploy-pages@v5`).
