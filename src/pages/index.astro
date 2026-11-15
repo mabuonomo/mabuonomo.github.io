@@ -1,0 +1,198 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const latestPosts = posts.slice(0, 6);
+
+const projects = [
+  {
+    name: 'botkitwit-ts',
+    desc: 'Middleware for integrating Wit.ai into a Botkit-powered bot using Node-Wit 5.0.0.',
+    stack: 'TypeScript',
+    url: 'https://github.com/mabuonomo/botkitwit-ts',
+  },
+  {
+    name: 'yggdrasil-ts',
+    desc: 'Node.js server boilerplate in TypeScript with JWT authentication, TypeGraphQL, and TypeORM.',
+    stack: 'GraphQL',
+    url: 'https://github.com/mabuonomo/yggdrasil-ts',
+  },
+  {
+    name: 'yggdrasil-springboot',
+    desc: 'Spring Boot server boilerplate in Java with JWT authentication, GraphQL, and Hibernate.',
+    stack: 'Java',
+    url: 'https://github.com/mabuonomo/yggdrasil-springboot',
+  },
+  {
+    name: 'abbashare',
+    desc: 'Install iOS .ipa builds directly through Safari on iOS without TestFlight or iTunes.',
+    stack: 'iOS OTA',
+    url: 'https://github.com/mabuonomo/abbashare_web',
+  },
+];
+
+const stackDiagram = JSON.stringify({
+  layout: 'hub',
+  alt: 'Backend Core connects Docker, Kubernetes, GraphQL, GitHub CI, Node.js and PHP Symfony.',
+  center: { label: 'Backend Core', icon: 'ts' },
+  spokes: [
+    { label: 'Docker', icon: 'docker' },
+    { label: 'Kubernetes', icon: 'kubernetes' },
+    { label: 'GraphQL', icon: 'graphql' },
+    { label: 'GitHub CI', icon: 'github' },
+    { label: 'Node.js', icon: 'js' },
+    { label: 'PHP Symfony', icon: 'ui:code' },
+  ],
+});
+---
+
+<BaseLayout
+  title="Mario Buonomo: software engineer in Milan"
+  description="Computer engineer from Naples, based in Milan at Facile.it. Building backend services in PHP, Node.js, TypeScript, and Kubernetes, plus technical articles on Docker and gRPC."
+  currentPath="/"
+>
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-text grid hero__grid">
+        <div class="hero__text span-5">
+          <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Milan, Italy · Facile.it</p>
+          <h1 id="hero-h">Software engineer building backend systems</h1>
+          <p class="hero__lead">Computer engineer from Naples, based in Milan. I design and build TypeScript, Node.js, PHP, and Kubernetes services at Facile.it.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com">Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+            <a class="btn btn--secondary" href="/blog/">Read articles</a>
+          </div>
+        </div>
+        <div class="hero__media span-6 start-7">
+          <img
+            src="/assets/images/profile.jpg"
+            alt="Mario Buonomo portrait"
+            width="1259"
+            height="944"
+            style="--ly-pos: 85% 20%"
+            fetchpriority="high"
+            loading="eager"
+          >
+          <div class="ly-float">
+            <div class="ly-float__row"><span class="ly-live">Writing</span><span>{posts.length} articles</span></div>
+            <div class="ly-float__title">4 open-source repositories on GitHub</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="expertise" aria-labelledby="expertise-h">
+    <div class="wrap grid">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="expertise-h">Core engineering stack. <span class="muted">Backend services, APIs, and container infrastructure.</span></h2>
+        </div>
+        <ul class="rows">
+          <li>
+            <span class="rows__name">PHP Zend3 &amp; Symfony<small>Design patterns, modular services, automated tests</small></span>
+            <span class="rows__value">Backend</span>
+          </li>
+          <li>
+            <span class="rows__name">Node.js &amp; TypeScript<small>gRPC microservices, GraphQL APIs, NestJS</small></span>
+            <span class="rows__value">APIs</span>
+          </li>
+          <li>
+            <span class="rows__name">TDD &amp; Continuous Integration<small>Unit suites, automated pipelines, reproducible builds</small></span>
+            <span class="rows__value">Quality</span>
+          </li>
+          <li>
+            <span class="rows__name">Docker &amp; Kubernetes<small>Container orchestration, Traefik, local dev parity</small></span>
+            <span class="rows__value">Infra</span>
+          </li>
+        </ul>
+      </div>
+      <div class="span-6 start-7">
+        <div class="panel">
+          <div class="dg" data-diagram={stackDiagram}></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-inverse" id="projects" aria-labelledby="projects-h">
+    <div class="wrap grid">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="projects-h">Open-source projects. <span class="muted">Boilerplates, middleware, and developer tools on GitHub.</span></h2>
+        </div>
+        <ul class="rows rows--inv">
+          {projects.map((project) => (
+            <li>
+              <span class="rows__name">
+                <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+                <small>{project.desc}</small>
+              </span>
+              <span class="rows__value">{project.stack}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="span-6 start-7">
+        <div class="frame frame--photo">
+          <img
+            src="/assets/images/kafka/kafka_diagram.png"
+            alt="Event-driven backend and Kafka messaging architecture diagram"
+            width="1353"
+            height="1305"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section statement" id="approach" data-moment="word-highlight" aria-label="Engineering approach">
+    <div class="wrap">
+      <p class="t-label">Engineering approach</p>
+      <p class="mo-wh__text">Clean architecture, automated tests, and container parity from local development to production clusters, built for <strong>long-term reliability</strong>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="articles" aria-labelledby="articles-h">
+    <div class="wrap grid">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="articles-h">Technical articles. <span class="muted">Guides on Docker, gRPC, Traefik, and Raspberry Pi.</span></h2>
+        </div>
+        <div class="articles-list">
+          {latestPosts.map((post) => (
+            <a class="article-row" href={`/blog/${post.id}/`}>
+              <span class="article-row__title">{post.data.title}</span>
+              <time class="article-row__date" datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: '2-digit',
+                })}
+              </time>
+            </a>
+          ))}
+        </div>
+        <div style="margin-top: var(--s-6);">
+          <a class="btn btn--secondary" href="/blog/">See all {posts.length} articles</a>
+        </div>
+      </div>
+      <div class="span-6 start-7">
+        <div class="frame frame--photo">
+          <img
+            src="/assets/images/usb2ip/raspberry_ble.jpg"
+            alt="Raspberry Pi hardware setup for Docker and Bluetooth over IP"
+            width="1280"
+            height="960"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

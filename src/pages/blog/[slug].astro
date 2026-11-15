@@ -1,0 +1,179 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      prevPost: index < posts.length - 1 ? posts[index + 1] : null,
+      nextPost: index > 0 ? posts[index - 1] : null,
+    },
+  }));
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const readingMinutes = Math.max(1, Math.round(words / 200));
+---
+
+<BaseLayout
+  title={`${post.data.title} — Mario Buonomo`}
+  description={`Technical article by Mario Buonomo: ${post.data.title}.`}
+  currentPath={`/blog/${post.id}/`}
+>
+  <Fragment slot="head">
+    <style>
+      .post-shell {
+        padding-top: calc(var(--nav) + var(--s-8));
+        padding-bottom: var(--s-9);
+      }
+      .post-header {
+        max-width: 72ch;
+        margin-bottom: var(--s-7);
+      }
+      .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s-3);
+        font-size: var(--t-small);
+        color: var(--muted);
+        margin-bottom: var(--s-3);
+      }
+      .post-header h1 {
+        font-size: clamp(32px, 4vw, 52px);
+        line-height: 1.08;
+        letter-spacing: var(--display-tracking);
+        font-weight: var(--display-weight);
+        margin: 0 0 var(--s-4);
+      }
+      .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s-2);
+      }
+      .post-tag {
+        font-size: 13px;
+        color: var(--muted);
+        padding: 4px 10px;
+        background: var(--surface);
+        border-radius: var(--r-sm);
+      }
+      .post-body {
+        max-width: 72ch;
+        font-size: var(--t-body);
+        line-height: 1.7;
+      }
+      .post-body h2 {
+        font-size: clamp(24px, 2.5vw, 32px);
+        line-height: 1.2;
+        margin: var(--s-7) 0 var(--s-3);
+      }
+      .post-body h3 {
+        font-size: 20px;
+        line-height: 1.3;
+        margin: var(--s-6) 0 var(--s-2);
+      }
+      .post-body p,
+      .post-body ul,
+      .post-body ol {
+        margin: 0 0 var(--s-4);
+      }
+      .post-body pre {
+        padding: var(--s-4);
+        border-radius: var(--r-md);
+        border: 1px solid rgba(238, 240, 243, 0.12);
+        overflow-x: auto;
+        margin: var(--s-5) 0;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .post-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--r-md);
+        margin: var(--s-4) 0;
+      }
+      .post-body blockquote {
+        margin: var(--s-5) 0;
+        padding-left: var(--s-4);
+        border-left: 3px solid var(--action);
+        color: var(--muted);
+      }
+      .post-nav {
+        max-width: 72ch;
+        margin-top: var(--s-8);
+        padding-top: var(--s-6);
+        border-top: 1px solid var(--hair);
+        display: flex;
+        justify-content: space-between;
+        gap: var(--s-4);
+        flex-wrap: wrap;
+      }
+      .post-nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .post-nav a:hover {
+        color: var(--action);
+      }
+    </style>
+  </Fragment>
+
+  <article class="post-shell">
+    <div class="wrap">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <span>·</span>
+          <span>{readingMinutes} min read</span>
+        </div>
+        <h1>{post.data.title}</h1>
+        {post.data.tag.length > 0 && (
+          <div class="post-tags">
+            {post.data.tag.map((t) => (
+              <span class="post-tag">#{t}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <nav class="post-nav" aria-label="Article navigation">
+        {prevPost ? (
+          <a href={`/blog/${prevPost.id}/`}>← {prevPost.data.title}</a>
+        ) : (
+          <a href="/blog/">← All articles</a>
+        )}
+        {nextPost && (
+          <a href={`/blog/${nextPost.id}/`}>{nextPost.data.title} →</a>
+        )}
+      </nav>
+    </div>
+  </article>
+
+  <script>
+    // Make scrollable code blocks keyboard-accessible (modern-web-guidance: html guide)
+    document.querySelectorAll('.post-body pre').forEach((pre, index) => {
+      pre.setAttribute('tabindex', '0');
+      pre.setAttribute('role', 'region');
+      pre.setAttribute('aria-label', `Code example ${index + 1}`);
+    });
+  </script>
+</BaseLayout>

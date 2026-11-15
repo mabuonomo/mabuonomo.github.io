@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found — Mario Buonomo"
+  description="The requested page could not be found on Mario Buonomo's website."
+  currentPath="/404.html"
+>
+  <section class="section" aria-labelledby="not-found-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h1 id="not-found-h" style="font-size: var(--t-h1); margin: 0 0 var(--s-4);">Page not found</h1>
+        <p class="lead">The page you requested does not exist or has moved.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/">Go to homepage</a>
+        <a class="btn btn--secondary" href="/blog/">Browse articles</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

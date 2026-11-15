@@ -1,0 +1,135 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const allTags = Array.from(
+  new Set(posts.flatMap((post) => post.data.tag))
+).sort();
+---
+
+<BaseLayout
+  title="Blog: Mario Buonomo technical articles"
+  description="Technical guides and tutorials on Docker, NestJS, gRPC, Traefik, Spring Boot, and Raspberry Pi by Mario Buonomo."
+  currentPath="/blog/"
+>
+  <Fragment slot="head">
+    <style>
+      .blog-archive {
+        padding-top: calc(var(--nav) + var(--s-8));
+        padding-bottom: var(--s-9);
+        min-height: 75svh;
+      }
+      .blog-archive__head {
+        margin-bottom: var(--s-7);
+      }
+      .blog-archive__head h1 {
+        font-size: var(--t-h1);
+        line-height: 1.05;
+        letter-spacing: var(--display-tracking-xl);
+        font-weight: var(--display-weight);
+        margin: 0 0 var(--s-3);
+      }
+      .tag-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s-2);
+        margin-bottom: var(--s-6);
+      }
+      .tag-btn {
+        appearance: none;
+        border: 1px solid var(--hair);
+        background: transparent;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: var(--t-small);
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--r-btn);
+        cursor: pointer;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .tag-btn[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+      .article-item[hidden] {
+        display: none;
+      }
+      .article-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s-2);
+        margin-top: var(--s-1);
+      }
+      .article-tag {
+        font-size: 13px;
+        color: var(--muted);
+      }
+    </style>
+  </Fragment>
+
+  <section class="blog-archive" aria-labelledby="blog-h">
+    <div class="wrap">
+      <div class="blog-archive__head">
+        <h1 id="blog-h">Technical articles</h1>
+        <p class="lead">Tutorials and notes on Docker, microservices, gRPC, Traefik, and embedded Linux.</p>
+      </div>
+
+      <div class="tag-bar" role="group" aria-label="Filter articles by tag">
+        <button class="tag-btn" type="button" data-tag="all" aria-pressed="true">All ({posts.length})</button>
+        {allTags.map((tag) => (
+          <button class="tag-btn" type="button" data-tag={tag} aria-pressed="false">{tag}</button>
+        ))}
+      </div>
+
+      <div class="articles-list" id="archive-list">
+        {posts.map((post) => (
+          <a
+            class="article-row article-item"
+            href={`/blog/${post.id}/`}
+            data-tags={post.data.tag.join(',')}
+          >
+            <div>
+              <span class="article-row__title">{post.data.title}</span>
+              <div class="article-tags">
+                {post.data.tag.slice(0, 4).map((t) => (
+                  <span class="article-tag">#{t}</span>
+                ))}
+              </div>
+            </div>
+            <time class="article-row__date" datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+              })}
+            </time>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+    const items = document.querySelectorAll<HTMLAnchorElement>('.article-item');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag ?? 'all';
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        items.forEach((item) => {
+          const itemTags = (item.dataset.tags ?? '').split(',');
+          item.hidden = tag !== 'all' && !itemTags.includes(tag);
+        });
+      });
+    });
+  </script>
+</BaseLayout>
