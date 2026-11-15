@@ -9,7 +9,7 @@ const { title, description, currentPath = '/' } = Astro.props;
 const isBlog = currentPath.startsWith('/blog');
 ---
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="arrow" data-motion>
+<html lang="en" data-type="software" data-mode="dark" data-radius="soft" data-buttons="arrow" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -23,8 +23,8 @@ const isBlog = currentPath.startsWith('/blog');
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0b0c0e">
 <link rel="canonical" href={`https://mabuonomo.github.io${currentPath}`}>
-<meta name="site-kind" content="other">
-<meta name="page-type" content="service">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
 {import.meta.env.PROD && (
   <>
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5LN1MZYY8Y"></script>
@@ -63,9 +63,15 @@ const isBlog = currentPath.startsWith('/blog');
 
 /* Cross-document view transitions (modern-web-guidance: cross-document-transitions) */
 @media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
   @view-transition {
     navigation: auto;
   }
+}
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 @media (max-width: 1023px) {
@@ -84,9 +90,125 @@ const isBlog = currentPath.startsWith('/blog');
   }
 }
 
-/* Hero portrait frame inside hero--split */
-.hero__media img {
+/* Refined compact hero profile card */
+.hero--split .hero__grid {
+  align-items: start;
+}
+.hero--split .hero__text {
+  align-self: start;
+}
+.hero__profile-wrap {
+  display: flex;
+  justify-content: stretch;
+  width: 100%;
+}
+.hero-profile {
+  width: 100%;
+  background: rgba(14, 17, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(74, 222, 128, 0.22);
   border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.6), 0 0 40px rgba(34, 197, 94, 0.08);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-profile:hover {
+  transform: translateY(-2px);
+  border-color: rgba(74, 222, 128, 0.48);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65), 0 0 48px rgba(34, 197, 94, 0.14);
+}
+.hero-profile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(238, 240, 243, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.hero-profile__body {
+  padding: 18px;
+}
+.hero-profile__img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: calc(var(--r-lg) - 4px);
+  overflow: hidden;
+  background: #040906;
+  border: 1px solid rgba(74, 222, 128, 0.18);
+}
+.hero-profile__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 82% 20%;
+  display: block;
+  filter: grayscale(100%) sepia(100%) hue-rotate(84deg) saturate(1.75) contrast(1.24) brightness(0.72);
+}
+.hero-profile__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+.hero-profile__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 3px,
+    rgba(0, 12, 5, 0.28) 3px,
+    rgba(0, 12, 5, 0.28) 4px
+  );
+  pointer-events: none;
+}
+.hero-profile__meta {
+  padding: 16px 4px 4px;
+  display: grid;
+  gap: 10px;
+}
+.hero-profile__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero-profile__row strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.hero-profile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 4px;
+}
+.hero-profile__tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(238, 240, 243, 0.1);
+  color: var(--ink);
+}
+@media (max-width: 1023px) {
+  .hero__profile-wrap {
+    justify-content: flex-start;
+    margin-top: var(--s-6);
+  }
+  .hero-profile {
+    max-width: 440px;
+  }
 }
 
 /* Rows subtitle styling */
@@ -99,8 +221,21 @@ const isBlog = currentPath.startsWith('/blog');
 }
 
 /* Diagram & visual panels */
+@media (min-width: 1024px) {
+  .hero__grid,
+  #expertise .grid,
+  #projects .grid,
+  #articles .grid {
+    column-gap: clamp(48px, 6vw, 88px);
+    align-items: start;
+  }
+}
 #expertise .panel {
   --p-h: 460px;
+  background: #14161b;
+  --card: #14161b;
+  --bg: #14161b;
+  border: 1px solid rgba(238, 240, 243, 0.12);
 }
 #projects .frame--photo,
 #articles .frame--photo {
@@ -176,6 +311,302 @@ main > .section.statement > .wrap {
   }
 }
 
+/* Glassmorphic float badge over hero portrait */
+.hero__media .ly-float {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(17, 19, 24, 0.78);
+  border: 1px solid rgba(238, 240, 243, 0.14);
+}
+
+/* Native dark-mode Systems & Telemetry UI card in #projects */
+.sys-card {
+  background: #111317;
+  border: 1px solid rgba(238, 240, 243, 0.12);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.sys-card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(238, 240, 243, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 12px;
+  color: var(--p-inv-muted);
+}
+.sys-card__dots {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.sys-card__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(238, 240, 243, 0.18);
+  display: block;
+}
+.sys-card__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4ade80;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+}
+.sys-card__live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+.sys-card__body {
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+.sys-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-md, 10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(238, 240, 243, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.sys-node:hover {
+  transform: translateY(-2px);
+  border-color: rgba(59, 87, 255, 0.45);
+  background: rgba(59, 87, 255, 0.06);
+}
+.sys-node__title {
+  font-weight: 500;
+  color: var(--p-inv-ink);
+  font-size: 14px;
+}
+.sys-node__sub {
+  font-size: 12px;
+  color: var(--p-inv-muted);
+  margin-top: 2px;
+}
+.sys-node__pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(59, 87, 255, 0.16);
+  color: #8ea2ff;
+  white-space: nowrap;
+}
+.sys-card__foot {
+  padding: 12px 18px;
+  border-top: 1px solid rgba(238, 240, 243, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 12px;
+  color: var(--p-inv-muted);
+}
+
+/* Subtle micro-interaction on article rows */
+.article-row {
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.article-row:hover {
+  transform: translateX(4px);
+}
+
+/* Playful 8-bit Super Mario interactive badge */
+.mario-pixel-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.mario-pixel-btn:hover {
+  transform: translateY(-2px) scale(1.08);
+}
+.mario-pixel-btn:active {
+  transform: translateY(1px) scale(0.95);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mario-pixel-btn svg {
+    animation: mario-bob 2.2s ease-in-out infinite;
+  }
+}
+@keyframes mario-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.mario-1up {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4ade80;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: mario-pop 0.75s ease-out forwards;
+}
+@keyframes mario-pop {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -18px); }
+}
+.approach-quote {
+  margin-top: var(--s-5);
+  font-size: var(--t-small);
+  color: var(--muted);
+  font-style: italic;
+}
+.hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--s-5);
+}
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #eef0f3;
+  text-decoration: none;
+  background: var(--social-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--social-border, rgba(238, 240, 243, 0.14));
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+.hero-social svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  display: block;
+}
+.hero-social:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  box-shadow: 0 6px 18px var(--social-glow, rgba(59, 87, 255, 0.22));
+}
+.hero-social--github {
+  --social-bg: rgba(110, 118, 129, 0.18);
+  --social-border: rgba(238, 240, 243, 0.22);
+  --social-glow: rgba(238, 240, 243, 0.14);
+}
+.hero-social--linkedin {
+  --social-bg: rgba(10, 102, 194, 0.22);
+  --social-border: rgba(56, 152, 236, 0.42);
+  --social-glow: rgba(10, 102, 194, 0.35);
+}
+.hero-social--twitter {
+  --social-bg: rgba(29, 155, 240, 0.18);
+  --social-border: rgba(29, 155, 240, 0.42);
+  --social-glow: rgba(29, 155, 240, 0.32);
+}
+.hero-social--instagram {
+  --social-bg: rgba(228, 64, 95, 0.2);
+  --social-border: rgba(228, 64, 95, 0.44);
+  --social-glow: rgba(228, 64, 95, 0.34);
+}
+.hero-social--facebook {
+  --social-bg: rgba(24, 119, 242, 0.22);
+  --social-border: rgba(59, 130, 246, 0.44);
+  --social-glow: rgba(24, 119, 242, 0.35);
+}
+
+/* Animated 8-bit Super Mario Mushroom logo */
+.mark--mario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+.footer .nav__logo .mark--mario {
+  width: 24px;
+  height: 24px;
+}
+.mark--mario svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mark--mario svg {
+    animation: mario-idle 1.4s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+  .nav__logo:hover .mark--mario svg {
+    animation: mario-hop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  }
+}
+@keyframes mario-idle {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  35% { transform: translateY(-4px) rotate(-4deg) scale(1.06); }
+  70% { transform: translateY(-2px) rotate(4deg) scale(1.03); }
+}
+@keyframes mario-hop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.14); }
+}
+
+/* Playful arcade 3D primary CTA buttons with animated 8-bit Star */
+.btn--primary {
+  box-shadow: 0 4px 0 #1e32a8, 0 10px 24px rgba(59, 87, 255, 0.28);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.15s ease;
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #1e32a8, 0 14px 28px rgba(59, 87, 255, 0.38);
+}
+.btn--primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1e32a8, 0 4px 12px rgba(59, 87, 255, 0.24);
+}
+.mario-star-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mario-star-icon {
+    animation: star-pulse 1.6s ease-in-out infinite;
+  }
+  .btn--primary:hover .mario-star-icon {
+    animation: star-hop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  }
+}
+@keyframes star-pulse {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-2px) rotate(6deg) scale(1.1); }
+}
+@keyframes star-hop {
+  0%, 100% { transform: translateY(0) rotate(-6deg) scale(1.05); }
+  50% { transform: translateY(-4px) rotate(8deg) scale(1.18); }
+}
+
 /* Blog rows */
 .articles-list {
   display: flex;
@@ -232,6 +663,7 @@ main > .section.statement > .wrap {
 </style>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<script is:inline src="/assets/backgrounds/backgrounds.js"></script>
 <link rel="modulepreload" href="/assets/moments/moments.js">
 <link rel="modulepreload" href="/assets/moments/lib.js">
 <link rel="modulepreload" href="/assets/moments/word-highlight/moment.js">
@@ -244,7 +676,7 @@ main > .section.statement > .wrap {
 <header class="nav nav--split">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Skip to content</a>
-    <a class="nav__logo" href="/#top"><span class="mark mark--initial" aria-hidden="true">M</span>Mario Buonomo</a>
+    <a class="nav__logo" href="/#top"><span class="mark--mario" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="1" width="6" height="1" fill="#0b0c0e"/><rect x="3" y="2" width="10" height="1" fill="#0b0c0e"/><rect x="2" y="3" width="12" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="5" fill="#0b0c0e"/><rect x="2" y="10" width="12" height="1" fill="#0b0c0e"/><rect x="3" y="11" width="10" height="3" fill="#0b0c0e"/><rect x="4" y="14" width="8" height="1" fill="#0b0c0e"/><rect x="5" y="2" width="6" height="1" fill="#ef4444"/><rect x="3" y="3" width="10" height="2" fill="#ef4444"/><rect x="2" y="5" width="12" height="4" fill="#ef4444"/><rect x="6" y="2" width="4" height="2" fill="#ffffff"/><rect x="7" y="4" width="2" height="1" fill="#ffffff"/><rect x="2" y="5" width="2" height="3" fill="#ffffff"/><rect x="12" y="5" width="2" height="3" fill="#ffffff"/><rect x="4" y="10" width="8" height="4" fill="#fde68a"/><rect x="6" y="10" width="1" height="2" fill="#111827"/><rect x="9" y="10" width="1" height="2" fill="#111827"/></svg></span>Mario Buonomo</a>
     <nav class="nav__links" aria-label="Main">
       <div class="nav__item"><a class="nav__link" href="/#expertise">Stack</a></div>
       <div class="nav__item"><a class="nav__link" href="/#projects">Projects</a></div>
@@ -252,7 +684,7 @@ main > .section.statement > .wrap {
       <div class="nav__item"><a class="nav__link" href="/blog/" aria-current={isBlog ? 'page' : undefined}>Blog</a></div>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com">Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg>Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -271,12 +703,12 @@ main > .section.statement > .wrap {
         <h2 id="close-h">Start a conversation</h2>
         <p>Backend engineering, distributed systems, or technical writing inquiries.</p>
       </div>
-      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com">Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg>Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <div class="closing__links">
       <div class="grid">
         <div class="span-4 stack-4">
-          <a class="nav__logo" href="/#top"><span class="mark mark--initial" aria-hidden="true">M</span>Mario Buonomo</a>
+          <a class="nav__logo" href="/#top"><span class="mark--mario" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="5" y="1" width="6" height="1" fill="#0b0c0e"/><rect x="3" y="2" width="10" height="1" fill="#0b0c0e"/><rect x="2" y="3" width="12" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="5" fill="#0b0c0e"/><rect x="2" y="10" width="12" height="1" fill="#0b0c0e"/><rect x="3" y="11" width="10" height="3" fill="#0b0c0e"/><rect x="4" y="14" width="8" height="1" fill="#0b0c0e"/><rect x="5" y="2" width="6" height="1" fill="#ef4444"/><rect x="3" y="3" width="10" height="2" fill="#ef4444"/><rect x="2" y="5" width="12" height="4" fill="#ef4444"/><rect x="6" y="2" width="4" height="2" fill="#ffffff"/><rect x="7" y="4" width="2" height="1" fill="#ffffff"/><rect x="2" y="5" width="2" height="3" fill="#ffffff"/><rect x="12" y="5" width="2" height="3" fill="#ffffff"/><rect x="4" y="10" width="8" height="4" fill="#fde68a"/><rect x="6" y="10" width="1" height="2" fill="#111827"/><rect x="9" y="10" width="1" height="2" fill="#111827"/></svg></span>Mario Buonomo</a>
           <p class="footer__lede">Computer engineer from Naples, based in Milan, Italy.</p>
         </div>
         <div class="span-2 footer__col">
@@ -308,13 +740,16 @@ main > .section.statement > .wrap {
           <h3>Connect</h3>
           <ul>
             <li><a href="https://www.linkedin.com/in/mariobuonomo/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://twitter.com/mariobuonomo" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://www.twitter.com/mariobuonomo/" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://instagram.com/mariobuonomo" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.facebook.com/mariobuonomo" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="mailto:ma.buonomo@gmail.com">Email</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__legal">
         <span>Mario Buonomo · 2026</span>
-        <span>Milan, Italy</span>
+        <span>Made with ❤️ in Italy · Milan</span>
       </div>
     </div>
   </div>
