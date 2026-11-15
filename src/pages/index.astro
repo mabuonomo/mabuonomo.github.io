@@ -10,16 +10,16 @@ const latestPosts = posts.slice(0, 6);
 
 const projects = [
   {
-    name: 'botkitwit-ts',
-    desc: 'Middleware for integrating Wit.ai into a Botkit-powered bot using Node-Wit 5.0.0.',
-    stack: 'TypeScript',
-    url: 'https://github.com/mabuonomo/botkitwit-ts',
-  },
-  {
     name: 'yggdrasil-ts',
     desc: 'Node.js server boilerplate in TypeScript with JWT authentication, TypeGraphQL, and TypeORM.',
-    stack: 'GraphQL',
+    stack: 'TypeScript',
     url: 'https://github.com/mabuonomo/yggdrasil-ts',
+  },
+  {
+    name: 'nestjs-guard-grpc',
+    desc: 'Agnostic authentication guard tailored for gRPC scopes and microservices in NestJS.',
+    stack: 'gRPC',
+    url: 'https://github.com/mabuonomo/nestjs-guard-grpc',
   },
   {
     name: 'yggdrasil-springboot',
@@ -37,31 +37,31 @@ const projects = [
 
 const stackDiagram = JSON.stringify({
   layout: 'hub',
-  alt: 'Backend Core connects Docker, Kubernetes, GraphQL, GitHub CI, Node.js and PHP Symfony.',
-  center: { label: 'Backend Core', icon: 'ts' },
+  alt: 'Staff Engineering Core connects Go, TypeScript, Docker, Kubernetes, GitHub CI, and AI Workflows.',
+  center: { label: 'Staff Eng.', icon: 'ui:code' },
   spokes: [
+    { label: 'Go & MCP', icon: 'graphql' },
+    { label: 'TypeScript', icon: 'ts' },
     { label: 'Docker', icon: 'docker' },
     { label: 'Kubernetes', icon: 'kubernetes' },
-    { label: 'GraphQL', icon: 'graphql' },
-    { label: 'GitHub CI', icon: 'github' },
-    { label: 'Node.js', icon: 'js' },
-    { label: 'PHP Symfony', icon: 'ui:code' },
+    { label: 'GitOps & CI', icon: 'github' },
+    { label: 'AI & Python', icon: 'js' },
   ],
 });
 ---
 
 <BaseLayout
-  title="Mario Buonomo: software engineer in Milan"
-  description="Computer engineer from Naples, based in Milan at Facile.it. Building backend services in PHP, Node.js, TypeScript, and Kubernetes, plus technical articles on Docker and gRPC."
+  title="Mario Buonomo: Staff Engineer in Milan"
+  description="Staff Engineer at Facile.it, based in Milan. Architecting backend systems in Go and TypeScript, Kubernetes & GitOps infrastructure, and applied AI/LLM workflows."
   currentPath="/"
 >
   <section class="hero hero--split" data-enter aria-labelledby="hero-h">
     <div class="wrap">
       <div class="hero-text grid hero__grid">
         <div class="hero__text span-5">
-          <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Milan, Italy · Facile.it</p>
-          <h1 id="hero-h">Software engineer building backend systems</h1>
-          <p class="hero__lead">Computer engineer from Naples, based in Milan. I design and build TypeScript, Node.js, PHP, and Kubernetes services at Facile.it.</p>
+          <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Milan, Italy · Staff Engineer @ Facile.it</p>
+          <h1 id="hero-h">Staff engineer architecting backend &amp; AI systems</h1>
+          <p class="hero__lead">Computer engineer from Naples, based in Milan. Staff Engineer at Facile.it, working across distributed backends in Go and TypeScript, Kubernetes infrastructure, and applied AI workflows.</p>
           <div class="btn-row">
             <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com">Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
             <a class="btn btn--secondary" href="/blog/">Read articles</a>
@@ -78,8 +78,8 @@ const stackDiagram = JSON.stringify({
             loading="eager"
           >
           <div class="ly-float">
-            <div class="ly-float__row"><span class="ly-live">Writing</span><span>{posts.length} articles</span></div>
-            <div class="ly-float__title">4 open-source repositories on GitHub</div>
+            <div class="ly-float__row"><span class="ly-live">Staff Engineer</span><span>{posts.length} articles</span></div>
+            <div class="ly-float__title">Go · TypeScript · Kubernetes · AI</div>
           </div>
         </div>
       </div>
@@ -90,24 +90,24 @@ const stackDiagram = JSON.stringify({
     <div class="wrap grid">
       <div class="span-6">
         <div class="section-head">
-          <h2 id="expertise-h">Core engineering stack. <span class="muted">Backend services, APIs, and container infrastructure.</span></h2>
+          <h2 id="expertise-h">Core engineering stack. <span class="muted">Backend services, Kubernetes infra, and applied AI.</span></h2>
         </div>
         <ul class="rows">
           <li>
-            <span class="rows__name">PHP Zend3 &amp; Symfony<small>Design patterns, modular services, automated tests</small></span>
+            <span class="rows__name">Go &amp; TypeScript Services<small>Distributed backends, MCP servers, NestJS, gRPC &amp; GraphQL APIs</small></span>
             <span class="rows__value">Backend</span>
           </li>
           <li>
-            <span class="rows__name">Node.js &amp; TypeScript<small>gRPC microservices, GraphQL APIs, NestJS</small></span>
-            <span class="rows__value">APIs</span>
-          </li>
-          <li>
-            <span class="rows__name">TDD &amp; Continuous Integration<small>Unit suites, automated pipelines, reproducible builds</small></span>
-            <span class="rows__value">Quality</span>
-          </li>
-          <li>
-            <span class="rows__name">Docker &amp; Kubernetes<small>Container orchestration, Traefik, local dev parity</small></span>
+            <span class="rows__name">Kubernetes, K3s &amp; GitOps<small>Docker, Traefik, reproducible containers, CI/CD pipelines</small></span>
             <span class="rows__value">Infra</span>
+          </li>
+          <li>
+            <span class="rows__name">Applied AI &amp; LLM Agents<small>LangChain, LangGraph, Ollama, MLflow, tool-calling workflows</small></span>
+            <span class="rows__value">AI / LLM</span>
+          </li>
+          <li>
+            <span class="rows__name">Python, Automation &amp; Mobile<small>Async bots, media pipelines, Android &amp; NFC integrations</small></span>
+            <span class="rows__value">Systems</span>
           </li>
         </ul>
       </div>
