@@ -25,6 +25,17 @@ const isBlog = currentPath.startsWith('/blog');
 <link rel="canonical" href={`https://mabuonomo.github.io${currentPath}`}>
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
+{import.meta.env.PROD && (
+  <>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5LN1MZYY8Y"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5LN1MZYY8Y');
+    </script>
+  </>
+)}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
