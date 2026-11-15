@@ -17,7 +17,8 @@ export async function getStaticPaths() {
 }
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
 const words = post.body ? post.body.split(/\s+/).length : 0;
 const readingMinutes = Math.max(1, Math.round(words / 200));
@@ -29,29 +30,32 @@ const readingMinutes = Math.max(1, Math.round(words / 200));
   currentPath={`/blog/${post.id}/`}
 >
   <Fragment slot="head">
-    <style>
+    <style is:global>
       .post-shell {
         padding-top: calc(var(--nav) + var(--s-8));
-        padding-bottom: var(--s-9);
+        padding-bottom: var(--s-10);
       }
       .post-header {
-        max-width: 72ch;
-        margin-bottom: var(--s-7);
+        max-width: 960px;
+        margin-bottom: var(--s-8);
+        padding-bottom: var(--s-6);
+        border-bottom: 1px solid rgba(238, 240, 243, 0.1);
       }
       .post-meta {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         gap: var(--s-3);
         font-size: var(--t-small);
         color: var(--muted);
-        margin-bottom: var(--s-3);
+        margin-bottom: var(--s-4);
       }
       .post-header h1 {
-        font-size: clamp(32px, 4vw, 52px);
+        font-size: clamp(32px, 4.2vw, 54px);
         line-height: 1.08;
         letter-spacing: var(--display-tracking);
         font-weight: var(--display-weight);
-        margin: 0 0 var(--s-4);
+        margin: 0 0 var(--s-5);
       }
       .post-tags {
         display: flex;
@@ -59,58 +63,248 @@ const readingMinutes = Math.max(1, Math.round(words / 200));
         gap: var(--s-2);
       }
       .post-tag {
-        font-size: 13px;
-        color: var(--muted);
-        padding: 4px 10px;
-        background: var(--surface);
-        border-radius: var(--r-sm);
+        font-size: 12px;
+        font-weight: 500;
+        color: #c7d2fe;
+        padding: 4px 11px;
+        background: rgba(59, 87, 255, 0.14);
+        border: 1px solid rgba(59, 87, 255, 0.25);
+        border-radius: 999px;
       }
+
+      /* Full-width 2-column editorial layout */
+      .post-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s-8);
+        align-items: start;
+      }
+      @media (min-width: 1024px) {
+        .post-layout--with-toc {
+          grid-template-columns: minmax(0, 1fr) 280px;
+          gap: clamp(40px, 5vw, 72px);
+        }
+      }
+
+      .post-aside {
+        position: sticky;
+        top: calc(var(--nav) + 24px);
+        background: #14161b;
+        border: 1px solid rgba(238, 240, 243, 0.1);
+        border-radius: var(--r-lg);
+        padding: 20px;
+      }
+      .post-aside__title {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .post-toc {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .post-toc a {
+        display: block;
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.15s ease, transform 0.15s ease;
+      }
+      .post-toc li[data-depth="3"] a {
+        padding-left: 12px;
+        font-size: 12px;
+      }
+      .post-toc a:hover {
+        color: var(--ink);
+        transform: translateX(3px);
+      }
+      .post-aside__back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(238, 240, 243, 0.08);
+        width: 100%;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .post-aside__back:hover {
+        color: #8ea2ff;
+      }
+
+      /* Rich article typography & spacing */
       .post-body {
-        max-width: 72ch;
-        font-size: var(--t-body);
-        line-height: 1.7;
+        max-width: 82ch;
+        font-size: clamp(16px, 1.1vw, 18px);
+        line-height: 1.75;
+        color: var(--ink);
       }
       .post-body h2 {
-        font-size: clamp(24px, 2.5vw, 32px);
+        font-size: clamp(24px, 2.4vw, 32px);
         line-height: 1.2;
-        margin: var(--s-7) 0 var(--s-3);
+        margin: 2.75rem 0 1rem;
+        scroll-margin-top: 90px;
       }
       .post-body h3 {
         font-size: 20px;
         line-height: 1.3;
-        margin: var(--s-6) 0 var(--s-2);
+        margin: 2rem 0 0.75rem;
+        scroll-margin-top: 90px;
       }
       .post-body p,
       .post-body ul,
       .post-body ol {
-        margin: 0 0 var(--s-4);
+        margin: 0 0 1.35rem;
       }
-      .post-body pre {
-        padding: var(--s-4);
-        border-radius: var(--r-md);
-        border: 1px solid rgba(238, 240, 243, 0.12);
-        overflow-x: auto;
-        margin: var(--s-5) 0;
-        font-size: 14px;
-        line-height: 1.55;
+      .post-body li {
+        margin-bottom: 0.45rem;
+      }
+      .post-body p:has(> img) {
+        margin: 2.5rem 0;
       }
       .post-body img {
+        display: block;
+        width: 100%;
         max-width: 100%;
         height: auto;
-        border-radius: var(--r-md);
-        margin: var(--s-4) 0;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(238, 240, 243, 0.12);
+        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.48);
+        margin: 2.5rem 0;
       }
-      .post-body blockquote {
-        margin: var(--s-5) 0;
-        padding-left: var(--s-4);
-        border-left: 3px solid var(--action);
+      .post-body p:has(> img) img {
+        margin: 0;
+      }
+      .post-body pre {
+        padding: 20px 24px;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(238, 240, 243, 0.12);
+        background: #0c0e12 !important;
+        overflow-x: auto;
+        margin: 2rem 0;
+        font-size: 14px;
+        line-height: 1.6;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      }
+      .code-shell {
+        margin: 2rem 0;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(238, 240, 243, 0.12);
+        background: #111317;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+      .code-shell__bar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.02);
+        border-bottom: 1px solid rgba(238, 240, 243, 0.08);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
         color: var(--muted);
       }
+      .code-shell__dots {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .code-shell__dots i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        display: block;
+        background: rgba(238, 240, 243, 0.18);
+      }
+      .code-shell__lang {
+        text-transform: lowercase;
+        color: var(--muted);
+        text-align: center;
+      }
+      .code-shell__copy {
+        justify-self: end;
+        background: rgba(59, 87, 255, 0.16);
+        border: 1px solid rgba(59, 87, 255, 0.3);
+        color: #8ea2ff;
+        border-radius: 999px;
+        padding: 4px 11px;
+        font-family: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      }
+      .code-shell__copy:hover {
+        background: rgba(59, 87, 255, 0.28);
+        border-color: rgba(59, 87, 255, 0.55);
+        color: #ffffff;
+      }
+      .code-shell pre {
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        padding: 20px 22px !important;
+      }
+      .post-body :not(pre) > code {
+        padding: 2px 7px;
+        border-radius: 6px;
+        background: rgba(59, 87, 255, 0.14);
+        border: 1px solid rgba(59, 87, 255, 0.24);
+        color: #c7d2fe;
+        font-size: 0.88em;
+      }
+      .post-body blockquote {
+        margin: 2rem 0;
+        padding: 16px 20px;
+        border-left: 3px solid var(--accent);
+        background: rgba(59, 87, 255, 0.08);
+        border-radius: 0 var(--r-md) var(--r-md) 0;
+        color: var(--ink);
+      }
+      .post-body blockquote p:last-child {
+        margin-bottom: 0;
+      }
+      .post-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        font-size: 15px;
+        border: 1px solid rgba(238, 240, 243, 0.12);
+        border-radius: var(--r-md);
+        overflow: hidden;
+      }
+      .post-body th,
+      .post-body td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid rgba(238, 240, 243, 0.08);
+      }
+      .post-body th {
+        background: rgba(255, 255, 255, 0.04);
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .post-body tr:last-child td {
+        border-bottom: 0;
+      }
+
       .post-nav {
-        max-width: 72ch;
-        margin-top: var(--s-8);
+        margin-top: var(--s-9);
         padding-top: var(--s-6);
-        border-top: 1px solid var(--hair);
+        border-top: 1px solid rgba(238, 240, 243, 0.1);
         display: flex;
         justify-content: space-between;
         gap: var(--s-4);
@@ -122,7 +316,7 @@ const readingMinutes = Math.max(1, Math.round(words / 200));
         font-weight: 500;
       }
       .post-nav a:hover {
-        color: var(--action);
+        color: #8ea2ff;
       }
     </style>
   </Fragment>
@@ -151,29 +345,82 @@ const readingMinutes = Math.max(1, Math.round(words / 200));
         )}
       </header>
 
-      <div class="post-body">
-        <Content />
+      <div class={`post-layout ${tocHeadings.length > 0 ? 'post-layout--with-toc' : ''}`}>
+        <div class="post-body">
+          <Content />
+        </div>
+
+        {tocHeadings.length > 0 && (
+          <aside class="post-aside" aria-label="Table of contents">
+            <p class="post-aside__title">On this page</p>
+            <ul class="post-toc">
+              {tocHeadings.map((h) => (
+                <li data-depth={h.depth}>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ul>
+            <a class="post-aside__back" href="/blog/">&larr; All articles</a>
+          </aside>
+        )}
       </div>
 
-      <nav class="post-nav" aria-label="Article navigation">
+      <nav class="post-nav" aria-label="Post navigation">
         {prevPost ? (
-          <a href={`/blog/${prevPost.id}/`}>← {prevPost.data.title}</a>
+          <a href={`/blog/${prevPost.id}/`}>&larr; {prevPost.data.title}</a>
         ) : (
-          <a href="/blog/">← All articles</a>
+          <a href="/blog/">&larr; All articles</a>
         )}
         {nextPost && (
-          <a href={`/blog/${nextPost.id}/`}>{nextPost.data.title} →</a>
+          <a href={`/blog/${nextPost.id}/`}>{nextPost.data.title} &rarr;</a>
         )}
       </nav>
     </div>
   </article>
 
   <script>
-    // Make scrollable code blocks keyboard-accessible (modern-web-guidance: html guide)
-    document.querySelectorAll('.post-body pre').forEach((pre, index) => {
-      pre.setAttribute('tabindex', '0');
-      pre.setAttribute('role', 'region');
-      pre.setAttribute('aria-label', `Code example ${index + 1}`);
-    });
+    (() => {
+      document.querySelectorAll('.post-body pre').forEach((pre) => {
+        if (!(pre instanceof HTMLElement) || pre.parentElement?.classList.contains('code-shell')) return;
+        const lang = pre.dataset.language || 'shell';
+
+        const shell = document.createElement('div');
+        shell.className = 'code-shell';
+
+        const bar = document.createElement('div');
+        bar.className = 'code-shell__bar';
+
+        const dots = document.createElement('span');
+        dots.className = 'code-shell__dots';
+        dots.setAttribute('aria-hidden', 'true');
+        dots.innerHTML = '<i></i><i></i><i></i>';
+
+        const langEl = document.createElement('span');
+        langEl.className = 'code-shell__lang';
+        langEl.textContent = `code / ${lang}`;
+
+        const copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'code-shell__copy';
+        copyBtn.textContent = 'Copy';
+        copyBtn.addEventListener('click', async () => {
+          const text = pre.innerText || '';
+          try {
+            await navigator.clipboard.writeText(text);
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+          } catch {
+            copyBtn.textContent = 'Error';
+          }
+        });
+
+        bar.appendChild(dots);
+        bar.appendChild(langEl);
+        bar.appendChild(copyBtn);
+        pre.parentNode?.insertBefore(shell, pre);
+        shell.appendChild(bar);
+        shell.appendChild(pre);
+      });
+    })();
   </script>
 </BaseLayout>
