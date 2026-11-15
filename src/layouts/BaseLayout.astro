@@ -143,6 +143,18 @@ const isBlog = currentPath.startsWith('/blog');
   color: var(--p-inv-muted);
 }
 
+/* Compact, vertically centered statement section (avoids 100svh dead space) */
+main > .section.statement {
+  height: auto;
+  min-height: 48svh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--s-10);
+}
+main > .section.statement > .wrap {
+  height: auto;
+}
+
 /* Blog rows */
 .articles-list {
   display: flex;
