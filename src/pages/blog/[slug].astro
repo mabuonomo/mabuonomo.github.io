@@ -22,12 +22,34 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
 const words = post.body ? post.body.split(/\s+/).length : 0;
 const readingMinutes = Math.max(1, Math.round(words / 200));
+const tagList = post.data.tag?.length ? post.data.tag.join(', ') : 'Software Engineering';
+const articleDesc = `${post.data.title} — Technical article by Mario Buonomo covering ${tagList}.`;
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: articleDesc,
+  datePublished: post.data.date.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author || 'Mario Buonomo',
+    url: 'https://mabuonomo.github.io/',
+  },
+  image: new URL(post.data.image || '/share.jpg', 'https://mabuonomo.github.io').toString(),
+  keywords: tagList,
+  mainEntityOfPage: `https://mabuonomo.github.io/blog/${post.id}/`,
+};
 ---
 
 <BaseLayout
   title={`${post.data.title} — Mario Buonomo`}
-  description={`Technical article by Mario Buonomo: ${post.data.title}.`}
+  description={articleDesc}
   currentPath={`/blog/${post.id}/`}
+  image={post.data.image}
+  ogType="article"
+  publishedTime={post.data.date.toISOString()}
+  tags={post.data.tag}
+  jsonLd={articleJsonLd}
 >
   <Fragment slot="head">
     <style is:global>

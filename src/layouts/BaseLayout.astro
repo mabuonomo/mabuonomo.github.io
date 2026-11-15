@@ -3,10 +3,27 @@ interface Props {
   title: string;
   description: string;
   currentPath?: string;
+  image?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  tags?: string[];
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, currentPath = '/' } = Astro.props;
+const {
+  title,
+  description,
+  currentPath = '/',
+  image = '/share.jpg',
+  ogType = 'website',
+  publishedTime,
+  tags = [],
+  jsonLd,
+} = Astro.props;
 const isBlog = currentPath.startsWith('/blog');
+const siteUrl = 'https://mabuonomo.github.io';
+const canonicalUrl = new URL(currentPath, siteUrl).toString();
+const ogImageUrl = new URL(image || '/share.jpg', siteUrl).toString();
 ---
 <!doctype html>
 <html lang="en" data-type="software" data-mode="dark" data-radius="soft" data-buttons="arrow" data-motion>
@@ -15,16 +32,37 @@ const isBlog = currentPath.startsWith('/blog');
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{title}</title>
 <meta name="description" content={description}>
-<meta property="og:type" content="website">
+<meta name="author" content="Mario Buonomo">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href={canonicalUrl}>
+<meta property="og:type" content={ogType}>
+<meta property="og:site_name" content="Mario Buonomo">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content={canonicalUrl}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
-<meta property="og:image" content="/share.jpg">
+<meta property="og:image" content={ogImageUrl}>
+{ogType === 'article' && publishedTime && (
+  <meta property="article:published_time" content={publishedTime}>
+)}
+{ogType === 'article' && (
+  <meta property="article:author" content="Mario Buonomo">
+)}
+{ogType === 'article' && tags.map((tag) => (
+  <meta property="article:tag" content={tag}>
+))}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@mariobuonomo">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImageUrl}>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0b0c0e">
-<link rel="canonical" href={`https://mabuonomo.github.io${currentPath}`}>
 <meta name="site-kind" content="software">
 <meta name="page-type" content="software">
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}
 {import.meta.env.PROD && (
   <>
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5LN1MZYY8Y"></script>
@@ -609,6 +647,84 @@ main > .section:not(.hero, .statement) > .wrap {
   background: rgba(255, 69, 0, 0.16);
   color: #ff7a52;
   border: 1px solid rgba(255, 87, 34, 0.3);
+}
+
+/* Responsive Staff Engineering Stack Card (replaces cramped radial hub on mobile) */
+.stack-card {
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.stack-card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  font: 500 12px/1 var(--font-mono);
+  color: var(--muted);
+}
+.stack-card__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 16px;
+}
+.stack-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.stack-tile:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+.stack-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  flex: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.stack-tile__icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.stack-tile__icon--lead { background: rgba(250, 204, 21, 0.14); color: #facc15; border-color: rgba(250, 204, 21, 0.3); }
+.stack-tile__icon--back { background: rgba(56, 189, 248, 0.14); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); }
+.stack-tile__icon--infra { background: rgba(99, 102, 241, 0.16); color: #818cf8; border-color: rgba(129, 140, 248, 0.32); }
+.stack-tile__icon--iot { background: rgba(74, 222, 128, 0.14); color: #4ade80; border-color: rgba(74, 222, 128, 0.3); }
+.stack-tile__icon--ai { background: rgba(168, 85, 247, 0.16); color: #c084fc; border-color: rgba(192, 132, 252, 0.32); }
+.stack-tile__icon--games { background: rgba(244, 63, 94, 0.15); color: #fb7185; border-color: rgba(251, 113, 133, 0.3); }
+.stack-tile__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.stack-tile__sub {
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+@media (max-width: 520px) {
+  .stack-card__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Animated 8-bit Super Mario Mushroom logo */
