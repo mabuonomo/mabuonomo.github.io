@@ -607,6 +607,93 @@ main > .section.statement > .wrap {
   50% { transform: translateY(-4px) rotate(8deg) scale(1.18); }
 }
 
+/* Footer contact form (Web3Forms) */
+footer.closing {
+  height: auto;
+  min-height: 0;
+}
+.closing__cta--form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-7);
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .closing__cta--form {
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(40px, 6vw, 88px);
+  }
+}
+.contact-form {
+  background: #14161b;
+  border: 1px solid rgba(238, 240, 243, 0.12);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: grid;
+  gap: 14px;
+}
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .contact-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.contact-form__field {
+  display: grid;
+  gap: 6px;
+}
+.contact-form__field label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border-radius: var(--r-sm, 8px);
+  border: 1px solid rgba(238, 240, 243, 0.14);
+  background: #0b0c0e;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.contact-form__field textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 87, 255, 0.22);
+}
+.contact-form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+.contact-form__status {
+  font-size: 13px;
+  margin: 0;
+  min-height: 20px;
+}
+.contact-form__status[data-state="success"] {
+  color: #4ade80;
+}
+.contact-form__status[data-state="error"] {
+  color: #f87171;
+}
+
 /* Blog rows */
 .articles-list {
   display: flex;
@@ -684,7 +771,7 @@ main > .section.statement > .wrap {
       <div class="nav__item"><a class="nav__link" href="/blog/" aria-current={isBlog ? 'page' : undefined}>Blog</a></div>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg>Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary" href="/#contact"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg>Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -698,12 +785,34 @@ main > .section.statement > .wrap {
 
 <footer class="footer closing" id="contact" aria-labelledby="close-h">
   <div class="wrap">
-    <div class="closing__cta close--type">
+    <div class="closing__cta closing__cta--form close--type">
       <div class="section-head">
         <h2 id="close-h">Start a conversation</h2>
-        <p>Backend engineering, distributed systems, or technical writing inquiries.</p>
+        <p>Backend engineering, distributed systems, IoT, or technical writing inquiries.</p>
       </div>
-      <a class="btn btn--primary" href="mailto:ma.buonomo@gmail.com"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg>Contact Mario<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="4fb85280-8dad-4617-af9f-e20b4527f583" />
+        <input type="hidden" name="from_name" value="mabuonomo.github.io" />
+        <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off" />
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="contact-form__field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="contact-form__field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+        </div>
+        <div class="contact-form__foot">
+          <button type="submit" class="btn btn--primary" id="contact-submit"><svg class="mario-star-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="1" width="2" height="2" fill="#0b0c0e"/><rect x="6" y="3" width="4" height="2" fill="#0b0c0e"/><rect x="1" y="5" width="14" height="2" fill="#0b0c0e"/><rect x="2" y="7" width="12" height="2" fill="#0b0c0e"/><rect x="3" y="9" width="10" height="2" fill="#0b0c0e"/><rect x="2" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="9" y="11" width="5" height="2" fill="#0b0c0e"/><rect x="1" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="11" y="13" width="4" height="2" fill="#0b0c0e"/><rect x="7" y="2" width="2" height="2" fill="#fde047"/><rect x="6" y="4" width="4" height="2" fill="#fde047"/><rect x="2" y="6" width="12" height="2" fill="#fde047"/><rect x="4" y="8" width="8" height="2" fill="#facc15"/><rect x="3" y="10" width="4" height="2" fill="#facc15"/><rect x="9" y="10" width="4" height="2" fill="#facc15"/><rect x="2" y="12" width="3" height="2" fill="#eab308"/><rect x="11" y="12" width="3" height="2" fill="#eab308"/><rect x="6" y="6" width="1" height="2" fill="#111827"/><rect x="9" y="6" width="1" height="2" fill="#111827"/></svg><span>Send Message</span><svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></button>
+          <p class="contact-form__status" id="contact-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
     <div class="closing__links">
       <div class="grid">
@@ -759,5 +868,44 @@ main > .section.statement > .wrap {
 <script type="module" src="/assets/motion/motion.js"></script>
 <script type="module" src="/assets/layout/layout.js"></script>
 <script type="module" src="/assets/diagrams/mount.js"></script>
+<script>
+  (() => {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('contact-status');
+    const submitBtn = document.getElementById('contact-submit');
+    if (!(form instanceof HTMLFormElement) || !status || !(submitBtn instanceof HTMLButtonElement)) return;
+    const label = submitBtn.querySelector('span');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      if (label) label.textContent = 'Sending...';
+      status.textContent = '';
+      status.removeAttribute('data-state');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.dataset.state = 'success';
+          status.textContent = '1-UP! Message sent successfully.';
+          form.reset();
+        } else {
+          status.dataset.state = 'error';
+          status.textContent = 'Could not send message. Please try again.';
+        }
+      } catch {
+        status.dataset.state = 'error';
+        status.textContent = 'Network error. Please try again.';
+      } finally {
+        submitBtn.disabled = false;
+        if (label) label.textContent = 'Send Message';
+      }
+    });
+  })();
+</script>
 </body>
 </html>
